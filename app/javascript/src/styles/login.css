@@ -1,0 +1,22 @@
+.Login {
+  justify-content: center;
+}
+
+.Login .logo {
+  width: 10rem;
+}
+
+.Login form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 40ch;
+}
+
+.Login .login-input {
+  margin-top: 1rem;
+}
+
+.Login .login-submit {
+  margin-top: 1rem;
+}

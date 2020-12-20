@@ -1,24 +1,14 @@
-# README
+# Playworks Step Challenge
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## TODO
 
-Things you may want to cover:
+- user can login
+- user can sign up
+- user can recover account
+- user can upload avatar
+- user can edit info
+- user can create team
+- user can view team dashboard
+- user can upload steps
+-
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
