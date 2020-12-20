@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
 import Login from './pages/Login'
+import Signup from './pages/Signup'
 
 const AuthenticatedRoute = ({ path, user, children }) => {
   const authenticated = !!user
@@ -23,7 +24,7 @@ export default function Router() {
           <Login />
         </Route>
         <Route path="/signup">
-          <p>signup</p>
+          <Signup />
         </Route>
         <Route path="/forgot-password">
           <p>forgot password</p>

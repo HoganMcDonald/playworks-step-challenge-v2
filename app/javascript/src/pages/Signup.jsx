@@ -2,19 +2,42 @@ import React from 'react'
 import { Button, TextField } from '@material-ui/core'
 
 import logo from '../images/logo.png'
-import '../styles/login.css'
+import '../styles/signup.css'
 import { Link } from 'react-router-dom'
 
-const Login = () => {
+const Signup = () => {
+  const [name, setName] = React.useState('')
+  const [email, setEmail] = React.useState('')
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
 
-  const handleLogin = () => {}
+  const handleRegister = () => {}
 
   return (
-    <main className="Login">
+    <main className="Signup">
       <img className="logo" src={logo} alt="" />
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleRegister}>
+        <TextField
+          className="login-input"
+          name="name"
+          value={name}
+          label="Name"
+          variant="outlined"
+          type="text"
+          required
+          onChange={(e) => setName(e.target.value)}
+        />
+        <TextField
+          className="login-input"
+          name="email"
+          htmlFor="email"
+          value={email}
+          label="Email"
+          variant="outlined"
+          type="email"
+          required
+          onChange={(e) => setEmail(e.target.value)}
+        />
         <TextField
           className="login-input"
           name="username"
@@ -50,14 +73,14 @@ const Login = () => {
           type="submit"
           name="submit"
           value="Log In">
-          Login
+          Register
         </Button>
       </form>
-      <Link className="btn btn_asLink" to="/signup">
-        New here? Register
+      <Link className="btn btn_asLink" to="/login">
+        Login
       </Link>
     </main>
   )
 }
 
-export default Login
+export default Signup

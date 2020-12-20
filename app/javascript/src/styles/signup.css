@@ -1,0 +1,22 @@
+.Signup {
+  justify-content: center;
+}
+
+.Signup .logo {
+  width: 10rem;
+}
+
+.Signup form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 40ch;
+}
+
+.Signup .login-input {
+  margin-top: 1rem;
+}
+
+.Signup .login-submit {
+  margin-top: 1rem;
+}
