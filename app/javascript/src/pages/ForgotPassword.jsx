@@ -2,17 +2,16 @@ import React from 'react'
 import { Button, TextField } from '@material-ui/core'
 
 import logo from '../images/logo.png'
-import '../styles/login.css'
+import '../styles/forgotpassword.css'
 import { Link } from 'react-router-dom'
 
-const Login = () => {
+const ForgotPassword = () => {
   const [email, setEmail] = React.useState('')
-  const [password, setPassword] = React.useState('')
 
   const handleLogin = () => {}
 
   return (
-    <main className="Login">
+    <main className="ForgotPassword">
       <img className="logo" src={logo} alt="" />
       <form onSubmit={handleLogin}>
         <TextField
@@ -25,17 +24,6 @@ const Login = () => {
           type="email"
           required
           onChange={(e) => setEmail(e.target.value)}
-        />
-        <TextField
-          className="login-input"
-          name="password"
-          htmlFor="password"
-          value={password}
-          label="Password"
-          variant="outlined"
-          type="password"
-          required
-          onChange={(e) => setPassword(e.target.value)}
         />
         <Button
           variant="contained"
@@ -50,20 +38,16 @@ const Login = () => {
           type="submit"
           name="submit"
           value="Log In">
-          Login
+          Submit
         </Button>
       </form>
       <span>
-        <Link className="btn btn_asLink" to="/signup">
-          New here? Register
-        </Link>
-        &nbsp; &nbsp;
-        <Link className="btn btn_asLink" to="/forgot-password">
-          Forgot Password
+        <Link className="btn btn_asLink" to="/login">
+          Login
         </Link>
       </span>
     </main>
   )
 }
 
-export default Login
+export default ForgotPassword

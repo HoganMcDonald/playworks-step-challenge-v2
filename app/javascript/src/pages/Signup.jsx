@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom'
 const Signup = () => {
   const [name, setName] = React.useState('')
   const [email, setEmail] = React.useState('')
-  const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
 
   const handleRegister = () => {}
@@ -37,17 +36,6 @@ const Signup = () => {
           type="email"
           required
           onChange={(e) => setEmail(e.target.value)}
-        />
-        <TextField
-          className="login-input"
-          name="username"
-          htmlFor="username"
-          value={username}
-          label="Username"
-          variant="outlined"
-          type="text"
-          required
-          onChange={(e) => setUsername(e.target.value)}
         />
         <TextField
           className="login-input"
