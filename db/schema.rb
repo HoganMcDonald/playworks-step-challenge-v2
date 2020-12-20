@@ -55,10 +55,10 @@ ActiveRecord::Schema.define(version: 2020_12_20_071622) do
 
   create_table "steps", force: :cascade do |t|
     t.integer "count"
-    t.bigint "user_id"
+    t.bigint "teams_user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_steps_on_user_id"
+    t.index ["teams_user_id"], name: "index_steps_on_teams_user_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -70,9 +70,11 @@ ActiveRecord::Schema.define(version: 2020_12_20_071622) do
     t.index ["contest_id"], name: "index_teams_on_contest_id"
   end
 
-  create_table "teams_users", id: false, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "team_id", null: false
+  create_table "teams_users", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "team_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["team_id"], name: "index_teams_users_on_team_id"
     t.index ["user_id"], name: "index_teams_users_on_user_id"
   end
@@ -91,6 +93,8 @@ ActiveRecord::Schema.define(version: 2020_12_20_071622) do
   end
 
   add_foreign_key "challenges", "contests"
-  add_foreign_key "steps", "users"
+  add_foreign_key "steps", "teams_users"
   add_foreign_key "teams", "contests"
+  add_foreign_key "teams_users", "teams"
+  add_foreign_key "teams_users", "users"
 end

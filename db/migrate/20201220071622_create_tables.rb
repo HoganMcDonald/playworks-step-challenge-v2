@@ -16,9 +16,11 @@ class CreateTables < ActiveRecord::Migration[6.1]
       t.timestamps
     end
 
-    create_join_table :users, :teams do |t|
-      t.index :user_id
-      t.index :team_id
+    create_table :teams_users do |t|
+      t.references :user, foreign_key: true
+      t.references :team, foreign_key: true
+
+      t.timestamps
     end
 
     create_table :challenges do |t|
@@ -32,7 +34,7 @@ class CreateTables < ActiveRecord::Migration[6.1]
 
     create_table :steps do |t|
       t.integer :count
-      t.references :user, foreign_key: true
+      t.references :teams_user, foreign_key: true
 
       t.timestamps
     end
