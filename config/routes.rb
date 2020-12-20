@@ -1,3 +1,12 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  # devise_for :users
+
+  get '/login', to: 'home#index'
+
+  # authenticated :user do
+  #   root to: 'home#index', as: :authenticated_root
+  #   # get '/example', to: 'home#index'
+  # end
+
+  root to: redirect('/login')
 end
