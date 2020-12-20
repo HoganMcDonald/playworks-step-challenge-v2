@@ -19,10 +19,10 @@ ActiveRecord::Schema.define(version: 2020_12_20_071622) do
     t.string "name"
     t.text "description"
     t.date "due_date"
-    t.bigint "contests_id"
+    t.bigint "contest_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["contests_id"], name: "index_challenges_on_contests_id"
+    t.index ["contest_id"], name: "index_challenges_on_contest_id"
   end
 
   create_table "content", force: :cascade do |t|
@@ -55,19 +55,19 @@ ActiveRecord::Schema.define(version: 2020_12_20_071622) do
 
   create_table "steps", force: :cascade do |t|
     t.integer "count"
-    t.bigint "users_id"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["users_id"], name: "index_steps_on_users_id"
+    t.index ["user_id"], name: "index_steps_on_user_id"
   end
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.string "company_name"
-    t.bigint "contests_id"
+    t.bigint "contest_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["contests_id"], name: "index_teams_on_contests_id"
+    t.index ["contest_id"], name: "index_teams_on_contest_id"
   end
 
   create_table "teams_users", id: false, force: :cascade do |t|
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2020_12_20_071622) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "challenges", "contests", column: "contests_id"
-  add_foreign_key "steps", "users", column: "users_id"
-  add_foreign_key "teams", "contests", column: "contests_id"
+  add_foreign_key "challenges", "contests"
+  add_foreign_key "steps", "users"
+  add_foreign_key "teams", "contests"
 end

@@ -11,7 +11,7 @@ class CreateTables < ActiveRecord::Migration[6.1]
     create_table :teams do |t|
       t.string :name
       t.string :company_name
-      t.references :contests, foreign_key: true
+      t.references :contest, foreign_key: true
 
       t.timestamps
     end
@@ -25,14 +25,14 @@ class CreateTables < ActiveRecord::Migration[6.1]
       t.string :name
       t.text :description
       t.date :due_date
-      t.references :contests, foreign_key: true
+      t.references :contest, foreign_key: true
 
       t.timestamps
     end
 
     create_table :steps do |t|
       t.integer :count
-      t.references :users, foreign_key: true
+      t.references :user, foreign_key: true
 
       t.timestamps
     end
