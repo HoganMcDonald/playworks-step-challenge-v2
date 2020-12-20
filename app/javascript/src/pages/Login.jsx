@@ -53,9 +53,15 @@ const Login = () => {
           Login
         </Button>
       </form>
-      <Link className="btn btn_asLink" to="/signup">
-        New here? Register
-      </Link>
+      <span>
+        <Link className="btn btn_asLink" to="/signup">
+          New here? Register
+        </Link>
+        &nbsp; &nbsp;
+        <Link className="btn btn_asLink" to="/forgot-password">
+          Forgot Password
+        </Link>
+      </span>
     </main>
   )
 }
