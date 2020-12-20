@@ -5,7 +5,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Typography from 'typography'
+import { Provider } from 'react-redux'
 
+import store from '../src/store'
 import Router from '../src/router'
 import '../src/styles/index.css'
 
@@ -26,9 +28,9 @@ const typography = new Typography({
 typography.injectStyles()
 
 const App = () => (
-  <>
+  <Provider store={store}>
     <Router />
-  </>
+  </Provider>
 )
 
 document.addEventListener('DOMContentLoaded', () => {

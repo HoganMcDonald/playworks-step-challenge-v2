@@ -4,12 +4,18 @@ import { Button, TextField } from '@material-ui/core'
 import logo from '../images/logo.png'
 import '../styles/login.css'
 import { Link } from 'react-router-dom'
+import { useStore } from '../store'
 
 const Login = () => {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
 
-  const handleLogin = () => {}
+  const { login, loginError } = useStore()
+
+  const handleLogin = (e) => {
+    e.preventDefault()
+    login(email, password)
+  }
 
   return (
     <main className="Login">
@@ -37,6 +43,7 @@ const Login = () => {
           required
           onChange={(e) => setPassword(e.target.value)}
         />
+        {loginError && <p className="inline-alert">{loginError}</p>}
         <Button
           variant="contained"
           style={{
