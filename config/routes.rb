@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  # devise_for :users
+  devise_for :users
 
   get '/login', to: 'home#index'
 
-  # authenticated :user do
-  #   root to: 'home#index', as: :authenticated_root
-  #   # get '/example', to: 'home#index'
-  # end
+  authenticated :user do
+    root to: 'home#index', as: :authenticated_root
+    # get '/example', to: 'home#index'
+  end
 
   root to: redirect('/login')
 end
