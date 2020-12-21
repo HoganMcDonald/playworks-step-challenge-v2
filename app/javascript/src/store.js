@@ -73,7 +73,7 @@ export const useStore = () => {
         if (error) {
           setLoginError(error.error)
         } else {
-          dispatch(slice.actions.setUser(response.body))
+          window.location.href = '/'
         }
       } catch (error) {
         setLoginLoading(false)
@@ -83,10 +83,48 @@ export const useStore = () => {
     [loginLoading, loginError, dispatch],
   )
 
+  const [signupLoading, setSignupLoading] = React.useState(false)
+  const [signupError, setSignupError] = React.useState('')
+  const signup = React.useCallback(
+    async (email, password, name) => {
+      if (signupLoading) {
+        return
+      }
+      setSignupLoading(true)
+      setSignupError('')
+      try {
+        const [response, error] = await post('/users.json', {
+          user: {
+            email,
+            password,
+            password_confirmation: password,
+            name,
+          },
+        })
+        setSignupLoading(false)
+        if (error) {
+          setSignupError(
+            error.errors.name || error.errors.email || error.errors.password,
+          )
+        } else {
+          dispatch(slice.actions.setUser(response.body))
+          window.location.href = '/login'
+        }
+      } catch (error) {
+        setSignupLoading(false)
+        setSignupError(error)
+      }
+    },
+    [signupLoading, signupError, dispatch],
+  )
+
   return {
     currentUser,
     login,
     loginError,
     loginLoading,
+    signup,
+    signupError,
+    signupLoading,
   }
 }
