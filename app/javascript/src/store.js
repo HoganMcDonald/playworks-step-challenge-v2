@@ -85,7 +85,7 @@ export const useStore = () => {
         }
       } catch (error) {
         setLoginLoading(false)
-        setLoginError(error)
+        setLoginError(error.message)
       }
     },
     [loginLoading, loginError, dispatch],
@@ -119,11 +119,39 @@ export const useStore = () => {
         }
       } catch (error) {
         setSignupLoading(false)
-        setSignupError(error)
+        setSignupError(error.message)
       }
     },
     [signupLoading, signupError, dispatch],
   )
+
+  const [forgotPasswordLoading, setForgotPasswordLoading] = React.useState(
+    false,
+  )
+  const [forgotPasswordError, setForgotPasswordError] = React.useState('')
+  const forgotPassword = React.useCallback(async (email) => {
+    if (forgotPasswordLoading) {
+      return null
+    }
+    setForgotPasswordLoading(true)
+    setForgotPasswordError('')
+    try {
+      const [response, error] = await post('/users/password', {
+        user: { email },
+      })
+      setForgotPasswordLoading(false)
+      if (error) {
+        setSignupError('unable to reset password at this time.')
+        return null
+      } else {
+        return response
+      }
+    } catch (error) {
+      setForgotPasswordLoading(false)
+      setForgotPasswordError(error.message)
+      return null
+    }
+  }, [])
 
   return {
     currentUser,
@@ -134,5 +162,7 @@ export const useStore = () => {
     signup,
     signupError,
     signupLoading,
+    forgotPassword,
+    forgotPasswordError,
   }
 }
