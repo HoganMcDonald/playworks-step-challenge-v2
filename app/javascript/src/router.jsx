@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import ForgotPassword from './pages/ForgotPassword'
+import { useStore } from './store'
 
 const AuthenticatedRoute = ({ path, user, children }) => {
   const authenticated = !!user
@@ -15,8 +16,12 @@ const AuthenticatedRoute = ({ path, user, children }) => {
   )
 }
 
-export default function Router() {
-  const user = false
+export default function Router({ user }) {
+  const { loadUser } = useStore()
+
+  React.useEffect(() => {
+    loadUser(user)
+  }, [user])
 
   return (
     <BrowserRouter>

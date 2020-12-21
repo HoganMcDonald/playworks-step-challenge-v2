@@ -27,9 +27,13 @@ const typography = new Typography({
 
 typography.injectStyles()
 
+let data = document.querySelector('#current-user')
+data = data.getAttribute('data')
+data = JSON.parse(data)
+
 const App = () => (
   <Provider store={store}>
-    <Router />
+    <Router user={data.user} />
   </Provider>
 )
 

@@ -55,6 +55,13 @@ export const useStore = () => {
   const currentUser = useSelector((state) => state.user)
 
   // actions
+  const loadUser = React.useCallback(
+    (user) => {
+      dispatch(slice.actions.setUser(user))
+    },
+    [dispatch],
+  )
+
   const [loginLoading, setLoginLoading] = React.useState(false)
   const [loginError, setLoginError] = React.useState('')
   const login = React.useCallback(
@@ -73,6 +80,7 @@ export const useStore = () => {
         if (error) {
           setLoginError(error.error)
         } else {
+          console.log(response)
           window.location.href = '/'
         }
       } catch (error) {
@@ -107,7 +115,6 @@ export const useStore = () => {
             error.errors.name || error.errors.email || error.errors.password,
           )
         } else {
-          dispatch(slice.actions.setUser(response.body))
           window.location.href = '/login'
         }
       } catch (error) {
@@ -120,6 +127,7 @@ export const useStore = () => {
 
   return {
     currentUser,
+    loadUser,
     login,
     loginError,
     loginLoading,
