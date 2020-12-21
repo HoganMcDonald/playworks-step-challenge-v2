@@ -4,13 +4,19 @@ import { Button, TextField } from '@material-ui/core'
 import logo from '../images/logo.png'
 import '../styles/signup.css'
 import { Link } from 'react-router-dom'
+import { useStore } from '../store'
 
 const Signup = () => {
   const [name, setName] = React.useState('')
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
 
-  const handleRegister = () => {}
+  const { signup, signupError } = useStore()
+
+  const handleRegister = (e) => {
+    e.preventDefault()
+    signup(email, password, name)
+  }
 
   return (
     <main className="Signup">
@@ -48,6 +54,7 @@ const Signup = () => {
           required
           onChange={(e) => setPassword(e.target.value)}
         />
+        {signupError && <p className="inline-alert">{signupError}</p>}
         <Button
           variant="contained"
           style={{
