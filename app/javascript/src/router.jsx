@@ -35,6 +35,7 @@ export default function Router({ user }) {
         <Route path="/forgot-password">
           <ForgotPassword />
         </Route>
+        <Route path="/reset-password">asdf</Route>
         <AuthenticatedRoute path="/" user={user}>
           <p>home</p>
         </AuthenticatedRoute>

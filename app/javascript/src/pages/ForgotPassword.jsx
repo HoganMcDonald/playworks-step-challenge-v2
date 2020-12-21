@@ -53,10 +53,7 @@ const ForgotPassword = () => {
         </form>
       )}
       {sent && (
-        <p>
-          Instructions were sent to your email if we have an account with that
-          email in our system.
-        </p>
+        <p>Instructions were sent to your email for resetting your password.</p>
       )}
       {forgotPasswordError && (
         <p className="inline-alert">{forgotPasswordError}</p>

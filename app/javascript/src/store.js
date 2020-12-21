@@ -141,7 +141,7 @@ export const useStore = () => {
       })
       setForgotPasswordLoading(false)
       if (error) {
-        setSignupError('unable to reset password at this time.')
+        setForgotPasswordError('unable to reset password at this time.')
         return null
       } else {
         return response
