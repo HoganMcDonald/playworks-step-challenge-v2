@@ -5,6 +5,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import ForgotPassword from './pages/ForgotPassword'
 import { useStore } from './store'
+import ResetPassword from './pages/ResetPassword'
 
 const AuthenticatedRoute = ({ path, user, children }) => {
   const authenticated = !!user
@@ -35,7 +36,9 @@ export default function Router({ user }) {
         <Route path="/forgot-password">
           <ForgotPassword />
         </Route>
-        <Route path="/reset-password">asdf</Route>
+        <Route path="/reset-password">
+          <ResetPassword />
+        </Route>
         <AuthenticatedRoute path="/" user={user}>
           <p>home</p>
         </AuthenticatedRoute>

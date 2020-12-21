@@ -40,7 +40,31 @@ const post = async (url, body) => {
     },
     body: JSON.stringify(body),
   })
-  const json = await response.json()
+  let json
+  if (response.status !== 204) {
+    json = await response.json()
+  }
+  if (response.status >= 400) {
+    return [null, json]
+  } else {
+    return [json, null]
+  }
+}
+
+const put = async (url, body) => {
+  const response = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+      'X-CSRF-Token': token,
+    },
+    body: JSON.stringify(body),
+  })
+  let json
+  if (response.status !== 204) {
+    json = await response.json()
+  }
   if (response.status >= 400) {
     return [null, json]
   } else {
@@ -136,7 +160,7 @@ export const useStore = () => {
     setForgotPasswordLoading(true)
     setForgotPasswordError('')
     try {
-      const [response, error] = await post('/users/password', {
+      const [response, error] = await post('/users/password.json', {
         user: { email },
       })
       setForgotPasswordLoading(false)
@@ -153,6 +177,43 @@ export const useStore = () => {
     }
   }, [])
 
+  const [resetPasswordLoading, setResetPasswordLoading] = React.useState(false)
+  const [resetPasswordError, setResetPasswordError] = React.useState('')
+  const resetPassword = React.useCallback(
+    async (password, confirmPassword, token) => {
+      if (resetPasswordLoading) {
+        return null
+      }
+      setResetPasswordLoading(true)
+      setResetPasswordError('')
+      try {
+        const [response, error] = await put('/users/password.json', {
+          user: {
+            password,
+            password_confirmation: confirmPassword,
+            reset_password_token: token,
+          },
+        })
+        setResetPasswordLoading(false)
+        if (error) {
+          setResetPasswordError(
+            error.errors.password ||
+              error.errors.password_confirmation ||
+              'unable to reset password at this time.',
+          )
+          return null
+        } else {
+          window.location.href = '/'
+        }
+      } catch (error) {
+        setResetPasswordLoading(false)
+        setResetPasswordError(error.message)
+        return null
+      }
+    },
+    [],
+  )
+
   return {
     currentUser,
     loadUser,
@@ -164,5 +225,7 @@ export const useStore = () => {
     signupLoading,
     forgotPassword,
     forgotPasswordError,
+    resetPassword,
+    resetPasswordError,
   }
 }
