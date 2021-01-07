@@ -3,9 +3,11 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import Home from './pages/Home'
 import ForgotPassword from './pages/ForgotPassword'
-import { useStore } from './store'
 import ResetPassword from './pages/ResetPassword'
+import TeamJoin from './pages/Team'
+import { useStore } from './store'
 
 const AuthenticatedRoute = ({ path, user, children }) => {
   const authenticated = !!user
@@ -39,8 +41,11 @@ export default function Router({ user }) {
         <Route path="/reset-password">
           <ResetPassword />
         </Route>
+        <AuthenticatedRoute path="/team" user={user}>
+          <TeamJoin />
+        </AuthenticatedRoute>
         <AuthenticatedRoute path="/" user={user}>
-          <p>home</p>
+          <Home />
         </AuthenticatedRoute>
       </Switch>
     </BrowserRouter>

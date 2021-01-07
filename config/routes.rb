@@ -7,4 +7,7 @@ Rails.application.routes.draw do
   get '/signup', to: 'home#index'
   get '/forgot-password', to: 'home#index'
   get '/reset-password', to: 'home#index'
+  get '/team', to: 'home#index'
+
+  resources :contests, only: [:index, :show, :create]
 end
