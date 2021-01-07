@@ -30,6 +30,29 @@ const token = document
   .querySelector('meta[name="csrf-token"]')
   .getAttribute('content')
 
+const get = async (url) => {
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+      'X-CSRF-Token': token,
+    },
+  })
+  let json
+  if (response.status !== 204) {
+    json = await response.json()
+  }
+  if (response.status === 401) {
+    window.location.href = '/login'
+  }
+  if (response.status >= 400) {
+    return [null, json]
+  } else {
+    return [json, null]
+  }
+}
+
 const post = async (url, body) => {
   const response = await fetch(url, {
     method: 'POST',
@@ -43,6 +66,9 @@ const post = async (url, body) => {
   let json
   if (response.status !== 204) {
     json = await response.json()
+  }
+  if (response.status === 401) {
+    window.location.href = '/login'
   }
   if (response.status >= 400) {
     return [null, json]
@@ -64,6 +90,9 @@ const put = async (url, body) => {
   let json
   if (response.status !== 204) {
     json = await response.json()
+  }
+  if (response.status === 401) {
+    window.location.href = '/login'
   }
   if (response.status >= 400) {
     return [null, json]
