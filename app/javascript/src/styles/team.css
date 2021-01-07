@@ -1,0 +1,35 @@
+.Team {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 40ch;
+  margin: auto;
+  padding: 1rem;
+}
+
+.Team .logo {
+  width: 60%;
+}
+
+.Team .icon {
+  width: 100%;
+}
+
+.Team form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.Team .team-input {
+  margin-top: 1rem;
+}
+
+.Team .team-submit {
+  margin-top: 1rem;
+}
+
+.Team h4 {
+  margin: auto;
+}
