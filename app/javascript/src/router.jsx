@@ -24,7 +24,7 @@ export default function Router({ user }) {
 
   React.useEffect(() => {
     loadUser(user)
-  }, [user])
+  }, [])
 
   return (
     <BrowserRouter>
