@@ -6,6 +6,15 @@ class Contest < ApplicationRecord
 
   scope :active, -> { where('end_date > ?', DateTime.now) }
 
+  def leaderboard
+    teams.map do |team|
+      {
+        name: team.name,
+        sum: team.total_steps || 0
+      }
+    end
+  end
+
   private
 
   def dates

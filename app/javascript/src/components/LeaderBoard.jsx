@@ -1,10 +1,10 @@
 import React from 'react'
 
+import { useStore } from '../store'
 import '../styles/leaderboard.css'
 
 const Leaderboard = () => {
-  // TODO:
-  const leaderboard = []
+  const { leaderboard } = useStore()
 
   return (
     <div className="leaderBoard">

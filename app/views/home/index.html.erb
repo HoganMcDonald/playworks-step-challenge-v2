@@ -1,5 +1,6 @@
 <%= content_tag 'div', nil, id: 'current-user', data: {
   user: current_user,
   team: current_user&.current_team,
-  contest: current_user&.current_team&.contest
+  contest: current_user&.current_team&.contest,
+  leaderboard: current_user&.current_team&.contest&.leaderboard
 }.to_json %>

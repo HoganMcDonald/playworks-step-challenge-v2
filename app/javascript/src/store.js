@@ -44,6 +44,12 @@ const slice = createSlice({
         contests: action.payload,
       }
     },
+    setLeaderboard(state, action) {
+      return {
+        ...state,
+        leaderboard: action.payload,
+      }
+    },
   },
 })
 
@@ -161,6 +167,7 @@ export const useStore = () => {
   const contest = useSelector((state) => state.contest)
   const teams = useSelector((state) => state.teams)
   const contests = useSelector((state) => state.contests)
+  const leaderboard = useSelector((state) => state.leaderboard)
 
   // actions
   const loadUser = React.useCallback(
@@ -194,6 +201,13 @@ export const useStore = () => {
   const loadContests = React.useCallback(
     (contests) => {
       dispatch(slice.actions.setContests(contests))
+    },
+    [dispatch],
+  )
+
+  const loadLeaderboard = React.useCallback(
+    (leaderboard) => {
+      dispatch(slice.actions.setLeaderboard(leaderboard))
     },
     [dispatch],
   )
@@ -436,9 +450,11 @@ export const useStore = () => {
     currentUser,
     team,
     contest,
+    leaderboard,
     loadUser,
     loadTeam,
     loadContest,
+    loadLeaderboard,
     login,
     logout,
     loginError,

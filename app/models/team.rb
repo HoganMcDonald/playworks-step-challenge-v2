@@ -5,4 +5,10 @@ class Team < ApplicationRecord
   has_many :steps, through: :teams_users
 
   validates_presence_of :name, :company_name
+
+  def total_steps
+    steps.sum do |step|
+      step.count
+    end
+  end
 end
