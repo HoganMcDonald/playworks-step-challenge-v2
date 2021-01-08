@@ -1,0 +1,22 @@
+.Steps {
+  min-height: 100vh;
+}
+
+.Steps .logo {
+  width: 10rem;
+}
+
+.Steps form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 40ch;
+}
+
+.Steps .steps-input {
+  margin-top: 1rem;
+}
+
+.Steps .steps-submit {
+  margin-top: 1rem;
+}

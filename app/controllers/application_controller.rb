@@ -8,6 +8,11 @@ class ApplicationController < ActionController::Base
     render json: error, status: 422
   end
 
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    error = {message:exception.message}
+    render json: error, status: 404
+  end
+
   protected
 
   def configure_permitted_parameters

@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import ForgotPassword from './pages/ForgotPassword'
 import ResetPassword from './pages/ResetPassword'
 import TeamJoin from './pages/Team'
+import Steps from './pages/Steps'
 import { useStore } from './store'
 
 const AuthenticatedRoute = ({ path, user, children }) => {
@@ -51,6 +52,9 @@ export default function Router({ data }) {
         </Route>
         <AuthenticatedRoute path="/team" user={data.user}>
           <TeamJoin />
+        </AuthenticatedRoute>
+        <AuthenticatedRoute path="/steps" user={data.user}>
+          <Steps />
         </AuthenticatedRoute>
         <AuthenticatedRoute path="/" user={data.user}>
           <Home />

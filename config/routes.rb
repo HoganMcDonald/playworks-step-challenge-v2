@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   get '/forgot-password', to: 'home#index'
   get '/reset-password', to: 'home#index'
   get '/team', to: 'home#index'
+  get '/steps', to: 'home#index'
 
   resources :contests, only: [:index, :show, :create], defaults: { format: :json }
   resources :teams, only: [:index, :update, :create], defaults: { format: :json }
+  resources :steps, only: [:create], defaults: { format: :json }
 end

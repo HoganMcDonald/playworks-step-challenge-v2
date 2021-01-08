@@ -3,7 +3,6 @@ class TeamsController < ApplicationController
   respond_to :json
 
   def create
-    puts params
     team = Team.create! name: params[:name], company_name: params[:company_name], contest_id: params[:contest_id]
     team.users << current_user
 

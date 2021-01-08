@@ -446,6 +446,35 @@ export const useStore = () => {
     }
   }, [])
 
+  const [createStepsLoading, setCreateStepsLoading] = React.useState(false)
+  const [createStepsError, setCreateStepsError] = React.useState('')
+  const createSteps = React.useCallback(async (count) => {
+    if (createStepsLoading) {
+      return null
+    }
+    setCreateStepsLoading(true)
+    setCreateStepsError('')
+    try {
+      const [response, error] = await post(`/steps.json`, {
+        team_id: team.id,
+        count,
+      })
+      setCreateStepsLoading(false)
+      if (error) {
+        setCreateStepsError(
+          error.message || 'unable submit steps at this time.',
+        )
+        return null
+      } else {
+        window.location.href = '/'
+      }
+    } catch (error) {
+      setCreateStepsLoading(false)
+      setCreateStepsError(error.message)
+      return null
+    }
+  }, [])
+
   return {
     currentUser,
     team,
@@ -478,5 +507,7 @@ export const useStore = () => {
     createTeamError,
     joinTeam,
     joinTeamError,
+    createSteps,
+    createStepsError,
   }
 }
