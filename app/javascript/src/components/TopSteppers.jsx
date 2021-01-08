@@ -47,7 +47,7 @@ const TopSteppers = () => {
             autoPlay={false}>
             {contest.topSteppers.map((user, i) => (
               <Paper key={i} className="stepperPaper">
-                <img className="topSteppersAvatar" src={user.avatar} alt="" />
+                {/* <img className="topSteppersAvatar" src={user.avatar} alt="" /> */}
                 <p>{user.username}</p>
                 <p>{user.sum} steps</p>
                 <p>{user.teamName}</p>
