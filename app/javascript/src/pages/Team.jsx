@@ -4,14 +4,24 @@ import GroupIcon from '@material-ui/icons/Group'
 
 import logo from '../images/logo.png'
 import '../styles/team.css'
-import { Button, TextField } from '@material-ui/core'
+import { Button, TextField, Select, MenuItem } from '@material-ui/core'
+import { useStore } from '../store'
 
 const Team = () => {
+  const { teams, contests, getTeams, getContests } = useStore()
   const [selected, setSelected] = React.useState('')
   const [teamName, setTeamName] = React.useState('')
   const [companyName, setCompanyName] = React.useState('')
-  const [contestCode, setContestCode] = React.useState('')
-  const [teamCode, setTeamCode] = React.useState('')
+  const [teamId, setTeamId] = React.useState('0')
+  const [contestId, setContestId] = React.useState('0')
+
+  React.useEffect(() => {
+    getContests()
+  }, [])
+
+  React.useEffect(() => {
+    getTeams(contestId)
+  }, [contestId])
 
   const handleCreate = React.useCallback((e) => {
     e.preventDefault()
@@ -51,16 +61,17 @@ const Team = () => {
       {selected === 'create' && (
         <form onSubmit={handleCreate}>
           <h4>Create a Team</h4>
-          <TextField
+          <Select
             className="team-input"
-            name="contestCode"
-            value={contestCode}
-            label="Contest Code"
+            value={contestId}
             variant="outlined"
-            type="text"
-            required
-            onChange={(e) => setContestCode(e.target.value)}
-          />
+            onChange={(e) => setContestId(e.target.value)}>
+            {contests.map((contest, i) => (
+              <MenuItem key={i} value={contest.id}>
+                {contest.name}
+              </MenuItem>
+            ))}
+          </Select>
           <TextField
             className="team-input"
             name="teamName"
@@ -101,16 +112,29 @@ const Team = () => {
       {selected === 'join' && (
         <form onSubmit={handleJoin}>
           <h4>Join a Team</h4>
-          <TextField
+          <Select
             className="team-input"
-            name="teamCode"
-            value={teamCode}
-            label="Team Code"
+            value={contestId}
             variant="outlined"
-            type="text"
-            required
-            onChange={(e) => setTeamCode(e.target.value)}
-          />
+            label="Contest"
+            onChange={(e) => setContestId(e.target.value)}>
+            {contests.map((contest, i) => (
+              <MenuItem key={i} value={contest.id}>
+                {contest.name}
+              </MenuItem>
+            ))}
+          </Select>
+          <Select
+            className="team-input"
+            value={teamId}
+            variant="outlined"
+            onChange={(e) => setTeamId(e.target.value)}>
+            {teams.map((team, i) => (
+              <MenuItem key={i} value={team.id}>
+                {team.name}
+              </MenuItem>
+            ))}
+          </Select>
           {joinError && <p className="inline-alert">{joinError}</p>}
           <Button
             variant="contained"

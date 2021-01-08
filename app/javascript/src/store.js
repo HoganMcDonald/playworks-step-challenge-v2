@@ -38,6 +38,12 @@ const slice = createSlice({
         teams: action.payload,
       }
     },
+    setContests(state, action) {
+      return {
+        ...state,
+        contests: action.payload,
+      }
+    },
   },
 })
 
@@ -130,6 +136,8 @@ export const useStore = () => {
   const currentUser = useSelector((state) => state.user)
   const team = useSelector((state) => state.team)
   const contest = useSelector((state) => state.contest)
+  const teams = useSelector((state) => state.teams)
+  const contests = useSelector((state) => state.contests)
 
   // actions
   const loadUser = React.useCallback(
@@ -156,6 +164,13 @@ export const useStore = () => {
   const loadTeams = React.useCallback(
     (teams) => {
       dispatch(slice.actions.setTeams(teams))
+    },
+    [dispatch],
+  )
+
+  const loadContests = React.useCallback(
+    (contests) => {
+      dispatch(slice.actions.setContests(contests))
     },
     [dispatch],
   )
@@ -310,14 +325,12 @@ export const useStore = () => {
 
   const [contestsLoading, setContestsLoading] = React.useState(false)
   const [contestsError, setContestsError] = React.useState('')
-  const getContests = React.useCallback(async (contestId) => {
+  const getContests = React.useCallback(async () => {
     if (contestsLoading) return null
     setContestsLoading(true)
     setContestsError('')
     try {
-      const [response, error] = await get(
-        `/contests.json?contest_id=${contestId}`,
-      )
+      const [response, error] = await get(`/contests.json`)
       if (error) {
         setContestsError('Unable to load contests.')
         setContestsLoading(false)
@@ -329,7 +342,7 @@ export const useStore = () => {
       setContestsError('Unable to load contests.')
       setContestsLoading(false)
     }
-  }, [])
+  }, [loadContests])
 
   return {
     currentUser,
@@ -349,8 +362,10 @@ export const useStore = () => {
     resetPassword,
     resetPasswordError,
     teamsError,
+    teamsLoading,
     getTeams,
     teams,
+    contestsLoading,
     contestsError,
     getContests,
     contests,
