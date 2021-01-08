@@ -12,13 +12,18 @@ const Home = () => {
 
   return (
     <main className="Home">
-      {(!team || !contest) && <Redirect to={'/team'} />}
-      <Nav />
-      <Leaderboard />
-      <TopSteppers />
-      <Challenges />
-      {/* TODO: */}
-      {/* <AllChallengePhotos /> */}
+      {!team || !contest ? (
+        <Redirect to={'/team'} />
+      ) : (
+        <>
+          <Nav />
+          <Leaderboard />
+          <TopSteppers />
+          <Challenges />
+          {/* TODO: */}
+          {/* <AllChallengePhotos /> */}
+        </>
+      )}
     </main>
   )
 }
