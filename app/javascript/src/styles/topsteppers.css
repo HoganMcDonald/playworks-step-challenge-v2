@@ -1,0 +1,25 @@
+.homePageHeadline {
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.stepperPaper {
+  width: 90%;
+  height: 100%;
+}
+
+.topSteppersAvatar {
+  object-fit: cover;
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  display: inline-block;
+  position: relative;
+}
+
+.react-multi-carousel-track,
+ul {
+  margin-bottom: 15px;
+  margin-top: 5px;
+}

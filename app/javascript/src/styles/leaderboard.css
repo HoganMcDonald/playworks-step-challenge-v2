@@ -1,0 +1,37 @@
+.topSteppers,
+.challengesContainer {
+  margin-top: 2.5rem;
+}
+
+.leaderBoard {
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.avatar,
+.topSteppersAvatar {
+  object-fit: cover;
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  display: inline-block;
+  position: relative;
+}
+
+.stepperPaper {
+  padding: 0.25rem;
+  margin-right: 0.2rem;
+  text-align: center;
+}
+
+.btns {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.logoutBtn,
+.rulesFaqBtn {
+  display: inline-block;
+  margin: 5px;
+  text-align: center;
+}

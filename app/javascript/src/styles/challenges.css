@@ -1,0 +1,16 @@
+.challengeOfTheDay {
+  text-align: center;
+}
+
+.challengeOfTheDayHeadline {
+  margin-top: 2rem;
+  text-align: center;
+  margin-bottom: 0.25rem;
+}
+
+.challengeOfTheDaySubtitleAndDescription {
+  display: inline-block;
+  text-align: center;
+  width: 300px;
+  margin-bottom: 10px;
+}
