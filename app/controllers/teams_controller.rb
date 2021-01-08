@@ -1,5 +1,14 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!
+  respond_to :json
+
+  def create
+    puts params
+    team = Team.create! name: params[:name], company_name: params[:company_name], contest_id: params[:contest_id]
+    team.users << current_user
+
+    render json: team
+  end
 
   def index
     teams = Team.where contest_id: params[:contest_id]
@@ -7,7 +16,7 @@ class TeamsController < ApplicationController
   end
 
   def update
-    team = Team.find! params[:team_id]
+    team = Team.find params[:id]
     team.users << current_user
   end
 end

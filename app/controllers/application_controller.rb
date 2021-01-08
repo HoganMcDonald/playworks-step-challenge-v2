@@ -3,6 +3,11 @@ class ApplicationController < ActionController::Base
   respond_to :json
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  rescue_from ActiveRecord::RecordInvalid do |exception|
+    error = {message:exception.message}
+    render json: error, status: 422
+  end
+
   protected
 
   def configure_permitted_parameters

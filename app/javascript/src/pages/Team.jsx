@@ -8,7 +8,16 @@ import { Button, TextField, Select, MenuItem } from '@material-ui/core'
 import { useStore } from '../store'
 
 const Team = () => {
-  const { teams, contests, getTeams, getContests } = useStore()
+  const {
+    teams,
+    contests,
+    getTeams,
+    getContests,
+    createTeamError,
+    createTeam,
+    joinTeamError,
+    joinTeam,
+  } = useStore()
   const [selected, setSelected] = React.useState('')
   const [teamName, setTeamName] = React.useState('')
   const [companyName, setCompanyName] = React.useState('')
@@ -25,13 +34,12 @@ const Team = () => {
 
   const handleCreate = React.useCallback((e) => {
     e.preventDefault()
+    createTeam(contestId, teamName, companyName)
   })
   const handleJoin = React.useCallback((e) => {
     e.preventDefault()
+    joinTeam(contestId, teamId)
   })
-
-  let createError = null
-  let joinError = null
 
   return (
     <main className="Team">
@@ -92,7 +100,7 @@ const Team = () => {
             required
             onChange={(e) => setCompanyName(e.target.value)}
           />
-          {createError && <p className="inline-alert">{createError}</p>}
+          {createTeamError && <p className="inline-alert">{createTeamError}</p>}
           <Button
             variant="contained"
             style={{
@@ -135,7 +143,7 @@ const Team = () => {
               </MenuItem>
             ))}
           </Select>
-          {joinError && <p className="inline-alert">{joinError}</p>}
+          {joinTeamError && <p className="inline-alert">{joinTeamError}</p>}
           <Button
             variant="contained"
             style={{
