@@ -25,7 +25,7 @@ class Contest < ApplicationRecord
       }
     end.sort_by do |steppers|
       steppers[:steps]
-    end.slice(0, 10)
+    end.reverse.slice(0, 10)
   end
 
   private
