@@ -4,6 +4,8 @@ class Contest < ApplicationRecord
   validates_presence_of :name, :start_date, :end_date
   validate :dates
 
+  scope :active, -> { where('end_date > ?', DateTime.now) }
+
   private
 
   def dates

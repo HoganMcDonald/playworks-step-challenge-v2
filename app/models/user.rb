@@ -7,4 +7,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def current_team
+    teams.joins(:contest).where('contests.end_date > ?', DateTime.now).last
+  end
 end
