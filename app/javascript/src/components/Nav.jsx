@@ -8,7 +8,7 @@ import { useStore } from '../store'
 import '../styles/nav.css'
 
 const Nav = () => {
-  const { currentUser } = useStore()
+  const { currentUser, logout } = useStore()
   const [anchorEl, setAnchorEl] = React.useState(null)
 
   const handleClick = (event) => {
@@ -19,10 +19,7 @@ const Nav = () => {
     setAnchorEl(null)
   }
 
-  const handleLogout = () => {
-    // TODO:
-    console.log('logout')
-  }
+  const handleLogout = logout
 
   return (
     <div className="nav">
@@ -91,17 +88,17 @@ const Nav = () => {
               </Link>
             </MenuItem>
             <MenuItem onClick={handleClose}>
-              <Link className="nav-link" to="/addphoto">
+              <Link className="nav-link" to="/post">
                 Add Photo
               </Link>
             </MenuItem>
             <MenuItem onClick={handleClose}>
-              <Link className="nav-link" to="/addsteps">
+              <Link className="nav-link" to="/steps">
                 Add Steps
               </Link>
             </MenuItem>
             <MenuItem onClick={handleClose}>
-              <Link className="nav-link" to="/team">
+              <Link className="nav-link" to="/team/home">
                 Team Page
               </Link>
             </MenuItem>

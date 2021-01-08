@@ -81,6 +81,29 @@ const get = async (url) => {
   }
 }
 
+const destroy = async (url) => {
+  const response = await fetch(url, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+      'X-CSRF-Token': token,
+    },
+  })
+  let json
+  if (response.status !== 204) {
+    json = await response.json()
+  }
+  if (response.status === 401) {
+    window.location.href = '/login'
+  }
+  if (response.status >= 400) {
+    return [null, json]
+  } else {
+    return [json, null]
+  }
+}
+
 const post = async (url, body) => {
   const response = await fetch(url, {
     method: 'POST',
@@ -202,6 +225,15 @@ export const useStore = () => {
     },
     [loginLoading, loginError, dispatch],
   )
+
+  const logout = React.useCallback(async () => {
+    try {
+      const [response, error] = await destroy('/users/sign_out.json')
+      window.location.href = '/'
+    } catch (error) {
+      window.location.href = '/'
+    }
+  }, [])
 
   const [signupLoading, setSignupLoading] = React.useState(false)
   const [signupError, setSignupError] = React.useState('')
@@ -408,6 +440,7 @@ export const useStore = () => {
     loadTeam,
     loadContest,
     login,
+    logout,
     loginError,
     loginLoading,
     signup,

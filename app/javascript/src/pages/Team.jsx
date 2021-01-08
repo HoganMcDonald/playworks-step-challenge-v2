@@ -17,6 +17,7 @@ const Team = () => {
     createTeam,
     joinTeamError,
     joinTeam,
+    logout,
   } = useStore()
   const [selected, setSelected] = React.useState('')
   const [teamName, setTeamName] = React.useState('')
@@ -35,6 +36,7 @@ const Team = () => {
   const handleCreate = React.useCallback((e) => {
     e.preventDefault()
     createTeam(contestId, teamName, companyName)
+    // TODO: add image upload
   })
   const handleJoin = React.useCallback((e) => {
     e.preventDefault()
@@ -160,6 +162,7 @@ const Team = () => {
           </Button>
         </form>
       )}
+      <Button onClick={logout}>Logout</Button>
     </main>
   )
 }
