@@ -16,6 +16,18 @@ const slice = createSlice({
         user: action.payload,
       }
     },
+    setTeam(state, action) {
+      return {
+        ...state,
+        team: action.payload,
+      }
+    },
+    setContest(state, action) {
+      return {
+        ...state,
+        contest: action.payload,
+      }
+    },
   },
 })
 
@@ -106,11 +118,27 @@ export const useStore = () => {
 
   // getters
   const currentUser = useSelector((state) => state.user)
+  const team = useSelector((state) => state.team)
+  const contest = useSelector((state) => state.contest)
 
   // actions
   const loadUser = React.useCallback(
     (user) => {
       dispatch(slice.actions.setUser(user))
+    },
+    [dispatch],
+  )
+
+  const loadTeam = React.useCallback(
+    (team) => {
+      dispatch(slice.actions.setTeam(team))
+    },
+    [dispatch],
+  )
+
+  const loadContest = React.useCallback(
+    (contest) => {
+      dispatch(slice.actions.setContest(contest))
     },
     [dispatch],
   )
@@ -133,7 +161,6 @@ export const useStore = () => {
         if (error) {
           setLoginError(error.error)
         } else {
-          console.log(response)
           window.location.href = '/'
         }
       } catch (error) {
@@ -245,7 +272,11 @@ export const useStore = () => {
 
   return {
     currentUser,
+    team,
+    contest,
     loadUser,
+    loadTeam,
+    loadContest,
     login,
     loginError,
     loginLoading,

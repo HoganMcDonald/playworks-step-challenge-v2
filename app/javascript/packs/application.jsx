@@ -33,7 +33,7 @@ data = JSON.parse(data)
 
 const App = () => (
   <Provider store={store}>
-    <Router user={data.user} />
+    <Router data={data} />
   </Provider>
 )
 

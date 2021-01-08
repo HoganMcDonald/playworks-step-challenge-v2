@@ -19,11 +19,13 @@ const AuthenticatedRoute = ({ path, user, children }) => {
   )
 }
 
-export default function Router({ user }) {
-  const { loadUser } = useStore()
+export default function Router({ data }) {
+  const { loadUser, loadTeam, loadContest } = useStore()
 
   React.useEffect(() => {
-    loadUser(user)
+    loadUser(data.user)
+    loadTeam(data.team)
+    loadContest(data.contest)
   }, [])
 
   return (
@@ -41,10 +43,10 @@ export default function Router({ user }) {
         <Route path="/reset-password">
           <ResetPassword />
         </Route>
-        <AuthenticatedRoute path="/team" user={user}>
+        <AuthenticatedRoute path="/team" user={data.user}>
           <TeamJoin />
         </AuthenticatedRoute>
-        <AuthenticatedRoute path="/" user={user}>
+        <AuthenticatedRoute path="/" user={data.user}>
           <Home />
         </AuthenticatedRoute>
       </Switch>

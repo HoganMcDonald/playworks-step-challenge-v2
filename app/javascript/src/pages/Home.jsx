@@ -1,4 +1,5 @@
 import React from 'react'
+import { CircularProgress } from '@material-ui/core'
 
 const Home = () => {
   // show spinner
@@ -6,7 +7,11 @@ const Home = () => {
   // load current team
   // redirect if contest or team are missing
   // render router
-  return <main>asdf</main>
+  return (
+    <main className="Home">
+      <CircularProgress />
+    </main>
+  )
 }
 
 export default Home
