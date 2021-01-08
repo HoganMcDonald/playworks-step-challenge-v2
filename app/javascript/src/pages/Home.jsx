@@ -1,15 +1,16 @@
 import React from 'react'
-import { CircularProgress } from '@material-ui/core'
+import { Redirect } from 'react-router-dom'
+
+import { useStore } from '../store'
 
 const Home = () => {
-  // show spinner
-  // load current conttest
-  // load current team
+  const { team, contest } = useStore()
+
   // redirect if contest or team are missing
   // render router
   return (
     <main className="Home">
-      <CircularProgress />
+      {(!team || !contest) && <Redirect to={'/team'} />}
     </main>
   )
 }

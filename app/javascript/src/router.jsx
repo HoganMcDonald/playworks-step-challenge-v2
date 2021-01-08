@@ -20,15 +20,20 @@ const AuthenticatedRoute = ({ path, user, children }) => {
 }
 
 export default function Router({ data }) {
+  const [loading, setLoading] = React.useState(true)
   const { loadUser, loadTeam, loadContest } = useStore()
 
-  React.useEffect(() => {
+  React.useEffect(async () => {
     loadUser(data.user)
     loadTeam(data.team)
     loadContest(data.contest)
+    // this is a total hack. sue me.
+    setLoading(false)
   }, [])
 
-  return (
+  return loading ? (
+    <span className="loading" />
+  ) : (
     <BrowserRouter>
       <Switch>
         <Route path="/login">
