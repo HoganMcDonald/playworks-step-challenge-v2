@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   get '/team', to: 'home#index'
 
   resources :contests, only: [:index, :show, :create]
+  resources :teams, only: [:index, :update]
 end

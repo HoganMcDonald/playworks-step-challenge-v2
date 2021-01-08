@@ -4,6 +4,10 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const initialState = {
   user: null,
+  contest: {},
+  team: {},
+  teams: [],
+  contests: [],
 }
 
 const slice = createSlice({
@@ -26,6 +30,12 @@ const slice = createSlice({
       return {
         ...state,
         contest: action.payload,
+      }
+    },
+    setTeams(state, action) {
+      return {
+        ...state,
+        teams: action.payload,
       }
     },
   },
@@ -139,6 +149,13 @@ export const useStore = () => {
   const loadContest = React.useCallback(
     (contest) => {
       dispatch(slice.actions.setContest(contest))
+    },
+    [dispatch],
+  )
+
+  const loadTeams = React.useCallback(
+    (teams) => {
+      dispatch(slice.actions.setTeams(teams))
     },
     [dispatch],
   )
@@ -270,6 +287,50 @@ export const useStore = () => {
     [],
   )
 
+  const [teamsLoading, setTeamsLoading] = React.useState(false)
+  const [teamsError, setTeamsError] = React.useState('')
+  const getTeams = React.useCallback(async (contestId) => {
+    if (teamsLoading) return null
+    setTeamsLoading(true)
+    setTeamsError('')
+    try {
+      const [response, error] = await get(`/teams.json?contest_id=${contestId}`)
+      if (error) {
+        setTeamsError('Unable to load teams.')
+        setTeamsLoading(false)
+        return null
+      }
+      loadTeams(response)
+      setTeamsLoading(false)
+    } catch (error) {
+      setTeamsError('Unable to load teams.')
+      setTeamsLoading(false)
+    }
+  }, [])
+
+  const [contestsLoading, setContestsLoading] = React.useState(false)
+  const [contestsError, setContestsError] = React.useState('')
+  const getContests = React.useCallback(async (contestId) => {
+    if (contestsLoading) return null
+    setContestsLoading(true)
+    setContestsError('')
+    try {
+      const [response, error] = await get(
+        `/contests.json?contest_id=${contestId}`,
+      )
+      if (error) {
+        setContestsError('Unable to load contests.')
+        setContestsLoading(false)
+        return null
+      }
+      loadContests(response)
+      setContestsLoading(false)
+    } catch (error) {
+      setContestsError('Unable to load contests.')
+      setContestsLoading(false)
+    }
+  }, [])
+
   return {
     currentUser,
     team,
@@ -287,5 +348,11 @@ export const useStore = () => {
     forgotPasswordError,
     resetPassword,
     resetPasswordError,
+    teamsError,
+    getTeams,
+    teams,
+    contestsError,
+    getContests,
+    contests,
   }
 }
