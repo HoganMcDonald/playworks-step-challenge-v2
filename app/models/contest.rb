@@ -1,5 +1,6 @@
 class Contest < ApplicationRecord
   has_many :teams
+  has_many :teams_users, through: :teams
 
   validates_presence_of :name, :start_date, :end_date
   validate :dates
@@ -7,12 +8,24 @@ class Contest < ApplicationRecord
   scope :active, -> { where('end_date > ?', DateTime.now) }
 
   def leaderboard
-    teams.map do |team|
+    teams.includes(:steps).map do |team|
       {
         name: team.name,
         sum: team.total_steps || 0
       }
     end
+  end
+
+  def top_steppers
+    teams_users.includes(:user, :steps, :team).map do |tu|
+      {
+        username: tu.user.name,
+        teamName: tu.team.name,
+        sum: tu.total_steps
+      }
+    end.sort_by do |steppers|
+      steppers[:steps]
+    end.slice(0, 10)
   end
 
   private

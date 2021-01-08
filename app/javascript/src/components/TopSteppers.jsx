@@ -33,7 +33,7 @@ const TopSteppers = () => {
   const { contest } = useStore()
 
   return (
-    <div>
+    <div style={{ width: '100%', maxWidth: '80ch' }}>
       <div className="topSteppers">
         <div className="homePageHeadline">
           <h2>Contest Top Steppers</h2>
@@ -42,15 +42,15 @@ const TopSteppers = () => {
           <Carousel
             responsive={responsive}
             swipeable={true}
-            infinite={true}
+            infinite={false}
             autoPlaySpeed={5000}
-            autoPlay={true}>
+            autoPlay={false}>
             {contest.topSteppers.map((user, i) => (
               <Paper key={i} className="stepperPaper">
                 <img className="topSteppersAvatar" src={user.avatar} alt="" />
                 <p>{user.username}</p>
                 <p>{user.sum} steps</p>
-                <p>{user.name}</p>
+                <p>{user.teamName}</p>
               </Paper>
             ))}
           </Carousel>
