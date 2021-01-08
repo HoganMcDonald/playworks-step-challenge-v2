@@ -6,9 +6,11 @@ import logo from '../images/logo.png'
 import '../styles/team.css'
 import { Button, TextField, Select, MenuItem } from '@material-ui/core'
 import { useStore } from '../store'
+import { Redirect } from 'react-router-dom'
 
 const Team = () => {
   const {
+    team,
     teams,
     contests,
     getTeams,
@@ -43,7 +45,9 @@ const Team = () => {
     joinTeam(contestId, teamId)
   })
 
-  return (
+  return team ? (
+    <Redirect to="/" />
+  ) : (
     <main className="Team">
       <img className="logo" src={logo} alt="" />
       {!selected && (
