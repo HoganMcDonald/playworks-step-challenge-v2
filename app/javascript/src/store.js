@@ -8,6 +8,8 @@ const initialState = {
   team: {},
   teams: [],
   contests: [],
+  faq: '',
+  rules: '',
 }
 
 const slice = createSlice({
@@ -48,6 +50,14 @@ const slice = createSlice({
       return {
         ...state,
         leaderboard: action.payload,
+      }
+    },
+    setContent(state, action) {
+      const { rules, faq } = action.payload
+      return {
+        ...state,
+        rules,
+        faq,
       }
     },
   },
@@ -208,6 +218,13 @@ export const useStore = () => {
   const loadLeaderboard = React.useCallback(
     (leaderboard) => {
       dispatch(slice.actions.setLeaderboard(leaderboard))
+    },
+    [dispatch],
+  )
+
+  const loadContent = React.useCallback(
+    (rules, faq) => {
+      dispatch(slice.actions.setContent({ rules, faq }))
     },
     [dispatch],
   )
@@ -484,6 +501,7 @@ export const useStore = () => {
     loadTeam,
     loadContest,
     loadLeaderboard,
+    loadContent,
     login,
     logout,
     loginError,

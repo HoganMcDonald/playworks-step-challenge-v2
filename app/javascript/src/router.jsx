@@ -23,13 +23,20 @@ const AuthenticatedRoute = ({ path, user, children }) => {
 
 export default function Router({ data }) {
   const [loading, setLoading] = React.useState(true)
-  const { loadUser, loadTeam, loadContest, loadLeaderboard } = useStore()
+  const {
+    loadUser,
+    loadTeam,
+    loadContest,
+    loadLeaderboard,
+    loadContent,
+  } = useStore()
 
   React.useEffect(async () => {
     loadUser(data.user)
     loadTeam(data.team)
     loadContest(data.contest)
     loadLeaderboard(data.leaderboard)
+    loadContent(data.rules, data.faq)
     // this is a total hack. sue me.
     setLoading(false)
   }, [])

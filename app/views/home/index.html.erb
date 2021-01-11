@@ -4,5 +4,7 @@
   contest: current_user&.current_team&.contest&.attributes&.merge({
     topSteppers: current_user&.current_team&.contest&.top_steppers
   }),
-  leaderboard: current_user&.current_team&.contest&.leaderboard
+  leaderboard: current_user&.current_team&.contest&.leaderboard,
+  rules: current_user&.current_team&.contest&.rules&.text,
+  faq: current_user&.current_team&.contest&.faq&.text,
 }.to_json %>

@@ -1,11 +1,20 @@
 class Contest < ApplicationRecord
   has_many :teams
   has_many :teams_users, through: :teams
+  has_many :content
 
   validates_presence_of :name, :start_date, :end_date
   validate :dates
 
   scope :active, -> { where('end_date > ?', DateTime.now) }
+
+  def rules
+    content.find_by content_type: :rules
+  end
+
+  def faq
+    content.find_by content_type: :faq
+  end
 
   def leaderboard
     teams.includes(:steps).map do |team|
@@ -25,7 +34,7 @@ class Contest < ApplicationRecord
       }
     end.sort_by do |steppers|
       -steppers[:sum]
-    end.reverse.slice(0, 10)
+    end.slice(0, 10)
   end
 
   private
