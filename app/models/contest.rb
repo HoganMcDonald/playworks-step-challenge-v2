@@ -24,7 +24,7 @@ class Contest < ApplicationRecord
         sum: tu.total_steps
       }
     end.sort_by do |steppers|
-      steppers[:steps]
+      -steppers[:sum]
     end.reverse.slice(0, 10)
   end
 

@@ -83,7 +83,7 @@ const Nav = () => {
             open={Boolean(anchorEl)}
             onClose={handleClose}>
             <MenuItem onClick={handleClose}>
-              <Link className="nav-link" to="/home">
+              <Link className="nav-link" to="/">
                 Home
               </Link>
             </MenuItem>

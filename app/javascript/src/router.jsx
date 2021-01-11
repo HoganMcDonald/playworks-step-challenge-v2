@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import ForgotPassword from './pages/ForgotPassword'
 import ResetPassword from './pages/ResetPassword'
 import TeamJoin from './pages/Team'
+import TeamHome from './pages/TeamHome'
 import Steps from './pages/Steps'
 import { useStore } from './store'
 
@@ -50,6 +51,9 @@ export default function Router({ data }) {
         <Route path="/reset-password">
           <ResetPassword />
         </Route>
+        <AuthenticatedRoute path="/team/home" user={data.user}>
+          <TeamHome />
+        </AuthenticatedRoute>
         <AuthenticatedRoute path="/team" user={data.user}>
           <TeamJoin />
         </AuthenticatedRoute>

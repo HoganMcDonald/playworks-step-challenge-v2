@@ -11,4 +11,20 @@ class Team < ApplicationRecord
       step.count
     end
   end
+
+  def serialized
+    {
+      id: id,
+      name: name,
+      companyName: company_name,
+      contestId: contest_id,
+      leaderboard: teams_users.includes(:user, :steps).map do |tu|
+          {
+            id: tu.user_id,
+            name: tu.user.name,
+            sum: tu.total_steps
+          }
+        end.sort_by { |tu| -tu[:sum] }
+    }
+  end
 end

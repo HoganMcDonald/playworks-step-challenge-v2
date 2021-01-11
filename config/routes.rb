@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/signup', to: 'home#index'
   get '/forgot-password', to: 'home#index'
   get '/reset-password', to: 'home#index'
+  get '/team/home', to: 'home#index'
   get '/team', to: 'home#index'
   get '/steps', to: 'home#index'
 

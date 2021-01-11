@@ -2,13 +2,9 @@
 
 ## TODO
 
-- user can login
-- user can sign up
-- user can recover account
-- user can upload avatar
-- user can edit info
-- user can create team
-- user can view team dashboard
-- user can upload steps
--
+- team home page - 30 mins
+- content pages - 20 mins
+- add photo atttachments for teams - 1 hr
+- create posts - 40 mins
+- challenges - 40 mins
 
