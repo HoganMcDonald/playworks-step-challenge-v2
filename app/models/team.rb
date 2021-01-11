@@ -4,6 +4,8 @@ class Team < ApplicationRecord
   has_many :users, through: :teams_users
   has_many :steps, through: :teams_users
 
+  has_one_attached :avatar
+
   validates_presence_of :name, :company_name
 
   def total_steps
