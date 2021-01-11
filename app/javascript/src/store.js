@@ -178,6 +178,8 @@ export const useStore = () => {
   const teams = useSelector((state) => state.teams)
   const contests = useSelector((state) => state.contests)
   const leaderboard = useSelector((state) => state.leaderboard)
+  const rules = useSelector((state) => state.rules)
+  const faq = useSelector((state) => state.faq)
 
   // actions
   const loadUser = React.useCallback(
@@ -497,6 +499,8 @@ export const useStore = () => {
     team,
     contest,
     leaderboard,
+    rules,
+    faq,
     loadUser,
     loadTeam,
     loadContest,
