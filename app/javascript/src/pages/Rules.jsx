@@ -8,21 +8,19 @@ const Rules = () => {
   const { rules, faq } = useStore()
 
   return (
-    <div>
+    <main className="Rules">
       <Nav />
-      <div>
-        <Grid
-          container
-          direction="column"
-          alignItems="center"
-          className="rulesFaq">
-          <h2>Rules</h2>
-          <p>{rules}</p>
-          <h2>Faq</h2>
-          <p>{faq}</p>
-        </Grid>
-      </div>
-    </div>
+      <Grid
+        container
+        direction="column"
+        alignItems="center"
+        className="rulesFaq">
+        <h2>Rules</h2>
+        <p>{rules}</p>
+        <h2>Faq</h2>
+        <p>{faq}</p>
+      </Grid>
+    </main>
   )
 }
 
