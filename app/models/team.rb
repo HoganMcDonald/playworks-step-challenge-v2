@@ -26,7 +26,15 @@ class Team < ApplicationRecord
             name: tu.user.name,
             sum: tu.total_steps
           }
-        end.sort_by { |tu| -tu[:sum] }
+        end.sort_by { |tu| -tu[:sum] },
+      steps: steps.includes(:user).all.map do |step|
+          {
+            id: step.id,
+            name: step.user.name,
+            sum: step.count,
+            createdAt: created_at
+          }
+        end
     }
   end
 end

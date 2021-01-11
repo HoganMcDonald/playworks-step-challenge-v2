@@ -4,6 +4,7 @@ import { useStore } from '../store'
 import Nav from '../components/Nav'
 import TeamStepCount from '../components/TeamStepCount'
 import Challenges from '../components/Challenges'
+import StepTable from '../components/StepTable'
 
 const TeamHome = () => {
   const { team } = useStore()
@@ -14,6 +15,7 @@ const TeamHome = () => {
       <h2>{team.name}</h2>
       <TeamStepCount />
       <Challenges />
+      <StepTable steps={team.steps} />
     </main>
   )
 }

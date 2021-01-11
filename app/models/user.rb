@@ -13,4 +13,20 @@ class User < ApplicationRecord
   def current_team
     teams.joins(:contest).where('contests.end_date > ?', DateTime.now).last
   end
+
+  def serialized
+    {
+      id: id,
+      email: email,
+      name: name,
+      steps: steps.all.map do |step|
+          {
+            id: step.id,
+            name: name,
+            sum: step.count,
+            createdAt: created_at
+          }
+        end
+    }
+  end
 end

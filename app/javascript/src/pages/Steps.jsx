@@ -4,11 +4,12 @@ import { Button, TextField } from '@material-ui/core'
 import '../styles/steps.css'
 import Nav from '../components/Nav'
 import { useStore } from '../store'
+import StepTable from '../components/StepTable'
 
 const Steps = () => {
   const [count, setCount] = React.useState(0)
 
-  const { createSteps, createStepsError } = useStore()
+  const { createSteps, createStepsError, steps } = useStore()
 
   const handleSubmit = React.useCallback(
     (e) => {
@@ -25,8 +26,6 @@ const Steps = () => {
         <form
           onSubmit={handleSubmit}
           style={{ marginTop: '2rem', padding: '1rem' }}>
-          {/* TODO: add history */}
-          {/* TODO: add edit and delete on history table */}
           <TextField
             className="steps-input"
             name="count"
@@ -56,6 +55,7 @@ const Steps = () => {
             Submit
           </Button>
         </form>
+        <StepTable steps={steps} />
       </main>
     </>
   )

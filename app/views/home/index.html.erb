@@ -1,5 +1,5 @@
 <%= content_tag 'div', nil, id: 'current-user', data: {
-  user: current_user,
+  user: current_user&.serialized,
   team: current_user&.current_team&.serialized,
   contest: current_user&.current_team&.contest&.attributes&.merge({
     topSteppers: current_user&.current_team&.contest&.top_steppers

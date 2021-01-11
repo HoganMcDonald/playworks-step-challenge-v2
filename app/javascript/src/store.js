@@ -180,6 +180,7 @@ export const useStore = () => {
   const leaderboard = useSelector((state) => state.leaderboard)
   const rules = useSelector((state) => state.rules)
   const faq = useSelector((state) => state.faq)
+  const steps = useSelector((state) => (state.user ? state.user.steps : []))
 
   // actions
   const loadUser = React.useCallback(
@@ -485,7 +486,7 @@ export const useStore = () => {
         )
         return null
       } else {
-        window.location.href = '/'
+        window.location.href = '/steps'
       }
     } catch (error) {
       setCreateStepsLoading(false)
@@ -501,6 +502,7 @@ export const useStore = () => {
     leaderboard,
     rules,
     faq,
+    steps,
     loadUser,
     loadTeam,
     loadContest,

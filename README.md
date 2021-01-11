@@ -4,7 +4,8 @@
 
 <!-- - team home page - 30 mins -->
 <!-- - content pages - 20 mins -->
-- add photo atttachments for teams - 1 hr
+- step table - 20 mins
 - create posts - 40 mins
 - challenges - 40 mins
+- add photo atttachments for teams - 1 hr
 
