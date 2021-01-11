@@ -10,9 +10,11 @@ Rails.application.routes.draw do
   get '/team/home', to: 'home#index'
   get '/team', to: 'home#index'
   get '/steps', to: 'home#index'
+  get '/post', to: 'home#index'
   get '/rules', to: 'home#index'
 
   resources :contests, only: [:index, :show, :create], defaults: { format: :json }
   resources :teams, only: [:index, :update, :create], defaults: { format: :json }
   resources :steps, only: [:create], defaults: { format: :json }
+  resources :posts, only: [:create]
 end

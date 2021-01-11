@@ -9,6 +9,7 @@ import ResetPassword from './pages/ResetPassword'
 import TeamJoin from './pages/Team'
 import TeamHome from './pages/TeamHome'
 import Steps from './pages/Steps'
+import Post from './pages/Post'
 import Rules from './pages/Rules'
 import { useStore } from './store'
 
@@ -67,6 +68,9 @@ export default function Router({ data }) {
         </AuthenticatedRoute>
         <AuthenticatedRoute path="/steps" user={data.user}>
           <Steps />
+        </AuthenticatedRoute>
+        <AuthenticatedRoute path="/post" user={data.user}>
+          <Post />
         </AuthenticatedRoute>
         <AuthenticatedRoute path="/rules" user={data.user}>
           <Rules />

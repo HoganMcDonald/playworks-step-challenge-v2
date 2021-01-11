@@ -1,0 +1,27 @@
+.Post {
+  min-height: 100vh;
+}
+
+.Post .logo {
+  width: 10rem;
+}
+
+.Post form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 60ch;
+}
+
+.Post .file-input {
+  width: 100%;
+  overflow: hidden;
+}
+
+.Post .post-input {
+  margin-top: 1rem;
+}
+
+.Post .post-submit {
+  margin-top: 1rem;
+}
