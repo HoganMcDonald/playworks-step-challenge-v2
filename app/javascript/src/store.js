@@ -134,7 +134,7 @@ const post = async (url, body) => {
   if (response.status !== 204) {
     json = await response.json()
   }
-  if (response.status === 401) {
+  if (response.status === 401 && url !== '/users/sign_in.json') {
     window.location.href = '/login'
   }
   if (response.status >= 400) {
