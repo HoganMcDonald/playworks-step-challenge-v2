@@ -79,7 +79,11 @@ export default function Router({ data }) {
           <Rules />
         </AuthenticatedRoute>
         <AuthenticatedRoute path="/admin" user={data.user}>
-          {data.user.role === 'admin' ? <Admin /> : <Redirect to="/" />}
+          {data.user && data.user.role === 'admin' ? (
+            <Admin />
+          ) : (
+            <Redirect to="/" />
+          )}
         </AuthenticatedRoute>
         <AuthenticatedRoute path="/" user={data.user}>
           <Home />
