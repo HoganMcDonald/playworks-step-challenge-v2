@@ -2,6 +2,7 @@ import React from 'react'
 import { TextField, Button } from '@material-ui/core'
 
 import Nav from '../components/Nav'
+import DailyChallenge from '../components/DailyChallenge'
 import '../styles/post.css'
 import { useStore } from '../store'
 
@@ -38,7 +39,7 @@ const Post = () => {
   return (
     <main className="Post">
       <Nav />
-      <h2>Upload Photo to Team Feed</h2>
+      <h2>Share Your Progress With Your Team</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Image
@@ -69,6 +70,7 @@ const Post = () => {
           Submit
         </Button>
       </form>
+      <DailyChallenge />
     </main>
   )
 }

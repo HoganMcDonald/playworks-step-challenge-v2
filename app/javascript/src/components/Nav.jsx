@@ -89,7 +89,7 @@ const Nav = () => {
             </MenuItem>
             <MenuItem onClick={handleClose}>
               <Link className="nav-link" to="/post">
-                Add Photo
+                Daily Challenge
               </Link>
             </MenuItem>
             <MenuItem onClick={handleClose}>
