@@ -19,7 +19,7 @@ const TeamStepCount = () => {
   )
 
   return (
-    <div className="teamStepCount">
+    <div className="teamStepCount" style={{ marginBottom: '2rem' }}>
       <center>
         <div className="teamStepCountHeader">
           <p style={{ marginBottom: 0 }}>Steps: {totalSteps}</p>

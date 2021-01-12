@@ -2,6 +2,7 @@ import React from 'react'
 import { TextField, Button } from '@material-ui/core'
 
 import Nav from '../components/Nav'
+import DailyChallenge from '../components/DailyChallenge'
 import '../styles/admin.css'
 
 const Admin = () => {
@@ -71,7 +72,7 @@ const Admin = () => {
           Submit
         </Button>
       </form>
-      <h2>Today's Challenge </h2>
+      <DailyChallenge />
     </main>
   )
 }

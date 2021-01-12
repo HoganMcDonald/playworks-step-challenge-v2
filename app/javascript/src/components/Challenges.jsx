@@ -3,6 +3,7 @@ import moment from 'moment'
 import { Box, Card, Grid } from '@material-ui/core'
 
 import { useStore } from '../store'
+import DailyChallenge from './DailyChallenge'
 import '../styles/challenges.css'
 
 const Challenges = ({ teamOnly }) => {
@@ -16,9 +17,7 @@ const Challenges = ({ teamOnly }) => {
   const challenges = []
   return (
     <div style={{ marginBottom: '3rem' }}>
-      <div className="challengeOfTheDayHeadline">
-        <h2>Challenge of the Day</h2>
-      </div>
+      <DailyChallenge />
       <Grid container spacing={2} justify="center">
         {items.map((item, i) => (
           <Grid item key={i}>

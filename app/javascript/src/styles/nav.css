@@ -1,6 +1,17 @@
+main {
+  margin-top: 4rem;
+}
+
 .nav {
   overflow: hidden;
   width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.6);
+  padding: 0.5rem;
 }
 
 .nav-title {
@@ -15,6 +26,8 @@
 .nav-logo {
   max-width: 14rem;
   display: inline-block;
+  margin-bottom: 0;
+  line-height: 0;
 }
 
 .nav-link {
