@@ -258,8 +258,10 @@ export const useStore = () => {
       setLoginError('')
       try {
         const [response, error] = await post('/users/sign_in.json', {
-          email,
-          password,
+          user: {
+            email,
+            password,
+          },
         })
         setLoginLoading(false)
         if (error) {
