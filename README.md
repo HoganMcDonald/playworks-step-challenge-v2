@@ -16,14 +16,15 @@
 12
 <!-- - challenges - 40 mins -->
 <!-- - Caption optional 10 mins -->
-- show daily challenge - 15mins
+<!-- - show daily challenge - 15mins -->
+-----------------------------
 12:45
 - Add date picker for steps - 10mins
 - delete past steps - 20 mins
------------------------------
 1
 - Admins/captains see user steps pages and can delete - 40mins
 - Admins/Captains can delete steps or posts for team members - 1hr
 2
 - Admin can switch active contest / show in bottom of screen - 1hr
 - optimize queries
+- rich ttext editor

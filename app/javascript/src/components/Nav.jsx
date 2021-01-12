@@ -107,6 +107,13 @@ const Nav = () => {
                 Rules
               </Link>
             </MenuItem>
+            {currentUser.role === 'admin' && (
+              <MenuItem onClick={handleClose}>
+                <Link className="nav-link" to="/admin">
+                  Admin
+                </Link>
+              </MenuItem>
+            )}
             <MenuItem onClick={handleLogout}>Logout</MenuItem>
           </Menu>
         </div>
