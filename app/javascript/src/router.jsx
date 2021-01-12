@@ -31,6 +31,7 @@ export default function Router({ data }) {
     loadContest,
     loadLeaderboard,
     loadContent,
+    loadPosts,
   } = useStore()
 
   React.useEffect(async () => {
@@ -38,6 +39,7 @@ export default function Router({ data }) {
     loadTeam(data.team)
     loadContest(data.contest)
     loadLeaderboard(data.leaderboard)
+    loadPosts(data.posts)
     loadContent(data.rules, data.faq)
     // this is a total hack. sue me.
     setLoading(false)

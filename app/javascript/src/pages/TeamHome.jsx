@@ -18,7 +18,7 @@ const TeamHome = () => {
       />
       <h2>{team.name}</h2>
       <TeamStepCount />
-      <Challenges />
+      <Challenges teamOnly={true} />
       <StepTable steps={team.steps} />
     </main>
   )

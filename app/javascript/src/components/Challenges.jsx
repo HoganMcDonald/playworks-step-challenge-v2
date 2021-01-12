@@ -1,32 +1,54 @@
 import React from 'react'
 import moment from 'moment'
-import { Box } from '@material-ui/core'
+import { Box, Card, Grid } from '@material-ui/core'
 
+import { useStore } from '../store'
 import '../styles/challenges.css'
 
-const Challenges = () => {
+const Challenges = ({ teamOnly }) => {
+  const { posts, team } = useStore()
   // TODO:
+
+  const items = React.useMemo(() => {
+    return posts.filter((post) => !teamOnly || post.teamId == team.id)
+  }, [posts, team, teamOnly])
+
   const challenges = []
   return (
-    <div>
+    <div style={{ marginBottom: '3rem' }}>
       <div className="challengeOfTheDayHeadline">
         <h2>Challenge of the Day</h2>
       </div>
-      {challenges.map((challenge, i) => (
-        <div className="challengesItem" key={i}>
-          <div className="challengeOfTheDay">
-            {challenge.date.substring(0, 10) ===
-            moment(Date()).format().substring(0, 10) ? (
-              <div className="challengeOfTheDaySubtitleAndDescription">
-                <h5>
-                  <Box display="inline">{challenge.name}</Box>
-                </h5>
-                <h5>{challenge.description}</h5>
+      <Grid container spacing={2} justify="center">
+        {items.map((item, i) => (
+          <Grid item>
+            <Card key={i}>
+              <div className="challengeOfTheDay">
+                <div className="challengeOfTheDaySubtitleAndDescription">
+                  <h5>
+                    <Box display="inline">
+                      <p style={{ marginTop: '1rem' }}>
+                        {item.name} - {moment(item.date).format('MMM DD, Y')}
+                      </p>
+                      <img
+                        src={item.image}
+                        alt=""
+                        style={{
+                          height: 'auto',
+                          maxHeight: '6rem',
+                          maxWidth: '100%',
+                        }}
+                      />
+                      <p style={{ fontWeight: 500 }}>{item.text}</p>
+                    </Box>
+                  </h5>
+                  <h5>{Card.text}</h5>
+                </div>
               </div>
-            ) : null}
-          </div>
-        </div>
-      ))}
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
     </div>
   )
 }

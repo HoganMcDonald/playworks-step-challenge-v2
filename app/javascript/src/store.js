@@ -10,6 +10,7 @@ const initialState = {
   contests: [],
   faq: '',
   rules: '',
+  posts: [],
 }
 
 const slice = createSlice({
@@ -50,6 +51,12 @@ const slice = createSlice({
       return {
         ...state,
         leaderboard: action.payload,
+      }
+    },
+    setPosts(state, action) {
+      return {
+        ...state,
+        posts: action.payload,
       }
     },
     setContent(state, action) {
@@ -181,6 +188,7 @@ export const useStore = () => {
   const rules = useSelector((state) => state.rules)
   const faq = useSelector((state) => state.faq)
   const steps = useSelector((state) => (state.user ? state.user.steps : []))
+  const posts = useSelector((state) => state.posts || [])
 
   // actions
   const loadUser = React.useCallback(
@@ -221,6 +229,13 @@ export const useStore = () => {
   const loadLeaderboard = React.useCallback(
     (leaderboard) => {
       dispatch(slice.actions.setLeaderboard(leaderboard))
+    },
+    [dispatch],
+  )
+
+  const loadPosts = React.useCallback(
+    (posts) => {
+      dispatch(slice.actions.setPosts(posts))
     },
     [dispatch],
   )
@@ -520,11 +535,13 @@ export const useStore = () => {
     rules,
     faq,
     steps,
+    posts,
     loadUser,
     loadTeam,
     loadContest,
     loadLeaderboard,
     loadContent,
+    loadPosts,
     login,
     logout,
     loginError,

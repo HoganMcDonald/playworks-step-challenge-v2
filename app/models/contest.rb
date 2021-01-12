@@ -1,6 +1,7 @@
 class Contest < ApplicationRecord
   has_many :teams
   has_many :teams_users, through: :teams
+  has_many :posts, through: :teams_users
   has_many :content
 
   validates_presence_of :name, :start_date, :end_date
@@ -14,6 +15,19 @@ class Contest < ApplicationRecord
 
   def faq
     content.find_by content_type: :faq
+  end
+
+  def all_posts
+    posts.includes(teams_user: :user).where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).map do |post|
+      {
+        id: post.id,
+        teamId: post.teams_user.team_id,
+        name: post.teams_user.user.name,
+        image: post.image_url,
+        text: post.text,
+        date: post.created_at
+      }
+    end
   end
 
   def leaderboard
