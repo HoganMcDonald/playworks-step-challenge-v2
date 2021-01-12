@@ -30,7 +30,8 @@ class Contest < ApplicationRecord
       {
         username: tu.user.name,
         teamName: tu.team.name,
-        sum: tu.total_steps
+        sum: tu.total_steps,
+        avatar: tu.user.avatar_url
       }
     end.sort_by do |steppers|
       -steppers[:sum]
