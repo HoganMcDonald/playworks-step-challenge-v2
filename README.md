@@ -6,9 +6,9 @@
 <!-- - content pages - 20 mins -->
 <!-- - step table - 20 mins -->
 <!-- - create posts - 40 mins -->
-- add photo atttachments for users - 20mins
-- add photo atttachments for teams - 15mins
-- Add team photo to team page - 15mins
+<!-- - add photo atttachments for users - 20mins -->
+<!-- - add photo atttachments for teams - 15mins -->
+<!-- - Add team photo to team page - 15mins -->
 - hook up forgot password email in prod - 15mins
 11
 - display posts - 20 mins

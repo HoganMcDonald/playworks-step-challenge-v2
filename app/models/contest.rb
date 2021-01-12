@@ -19,6 +19,7 @@ class Contest < ApplicationRecord
   def leaderboard
     teams.includes(:steps).map do |team|
       {
+        id: team.id,
         name: team.name,
         sum: team.total_steps || 0
       }

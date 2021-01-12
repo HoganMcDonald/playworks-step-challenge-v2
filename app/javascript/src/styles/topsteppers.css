@@ -16,6 +16,7 @@
   width: 70px;
   display: inline-block;
   position: relative;
+  background-color: #7b7e81;
 }
 
 .react-multi-carousel-track,
