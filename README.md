@@ -9,7 +9,7 @@
 <!-- - add photo atttachments for users - 20mins -->
 <!-- - add photo atttachments for teams - 15mins -->
 <!-- - Add team photo to team page - 15mins -->
-- hook up forgot password email in prod - 15mins
+<!-- - hook up forgot password email in prod - 15mins -->
 11
 - display posts - 20 mins
 - admin page - 1hr
