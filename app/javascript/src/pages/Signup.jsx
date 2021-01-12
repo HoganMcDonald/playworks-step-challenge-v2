@@ -15,7 +15,12 @@ const Signup = () => {
 
   const handleRegister = (e) => {
     e.preventDefault()
-    signup(email, password, name)
+
+    const avatar = e.target['avatar'].files[0]
+    const formData = new FormData()
+    formData.append('avatar', avatar)
+
+    signup(email, password, name, formData)
   }
 
   return (
@@ -54,6 +59,7 @@ const Signup = () => {
           required
           onChange={(e) => setPassword(e.target.value)}
         />
+        <input className="file-input" name="avatar" type="file" required />
         {signupError && <p className="inline-alert">{signupError}</p>}
         <Button
           variant="contained"

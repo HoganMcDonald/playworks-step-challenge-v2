@@ -17,6 +17,12 @@
   margin-top: 1rem;
 }
 
+.Signup .file-input {
+  margin-top: 1rem;
+  width: 100%;
+  overflow: hidden;
+}
+
 .Signup .login-submit {
   margin-top: 1rem;
 }

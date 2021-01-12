@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get '/post', to: 'home#index'
   get '/rules', to: 'home#index'
 
+  put '/upload-avatar', to: 'avatar#upload_avatar'
+
   resources :contests, only: [:index, :show, :create], defaults: { format: :json }
   resources :teams, only: [:index, :update, :create], defaults: { format: :json }
   resources :steps, only: [:create], defaults: { format: :json }

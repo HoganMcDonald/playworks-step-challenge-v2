@@ -3,7 +3,7 @@ class TeamsController < ApplicationController
   respond_to :json
 
   def create
-    team = Team.create! name: params[:name], company_name: params[:company_name], contest_id: params[:contest_id]
+    team = Team.create! name: params[:name], company_name: params[:company_name], contest_id: params[:contest_id], avatar: params[:avatar]
     team.users << current_user
 
     render json: team

@@ -272,7 +272,7 @@ export const useStore = () => {
   const [signupLoading, setSignupLoading] = React.useState(false)
   const [signupError, setSignupError] = React.useState('')
   const signup = React.useCallback(
-    async (email, password, name) => {
+    async (email, password, name, avatarFormData) => {
       if (signupLoading) {
         return
       }
@@ -293,6 +293,13 @@ export const useStore = () => {
             error.errors.name || error.errors.email || error.errors.password,
           )
         } else {
+          await fetch('/upload-avatar', {
+            method: 'PUT',
+            headers: {
+              Accept: 'application/json',
+            },
+            body: avatarFormData,
+          })
           window.location.href = '/login'
         }
       } catch (error) {
