@@ -37,8 +37,12 @@ const Team = () => {
 
   const handleCreate = React.useCallback((e) => {
     e.preventDefault()
+
+    const avatar = e.target['avatar'].files[0]
+    const formData = new FormData()
+    formData.append('avatar', avatar)
+
     createTeam(contestId, teamName, companyName)
-    // TODO: add image upload
   })
   const handleJoin = React.useCallback((e) => {
     e.preventDefault()
@@ -106,6 +110,7 @@ const Team = () => {
             required
             onChange={(e) => setCompanyName(e.target.value)}
           />
+          <input className="file-input" name="avatar" type="file" required />
           {createTeamError && <p className="inline-alert">{createTeamError}</p>}
           <Button
             variant="contained"

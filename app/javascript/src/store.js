@@ -293,7 +293,7 @@ export const useStore = () => {
             error.errors.name || error.errors.email || error.errors.password,
           )
         } else {
-          await fetch('/upload-avatar', {
+          await fetch('/upload-user-avatar', {
             method: 'PUT',
             headers: {
               Accept: 'application/json',
@@ -419,33 +419,43 @@ export const useStore = () => {
 
   const [createTeamLoading, setCreateTeamLoading] = React.useState(false)
   const [createTeamError, setCreateTeamError] = React.useState('')
-  const createTeam = React.useCallback(async (contestId, name, companyName) => {
-    if (createTeamLoading) {
-      return null
-    }
-    setCreateTeamLoading(true)
-    setCreateTeamError('')
-    try {
-      const [response, error] = await post(`/teams.json`, {
-        contest_id: contestId,
-        name,
-        company_name: companyName,
-      })
-      setCreateTeamLoading(false)
-      if (error) {
-        setCreateTeamError(
-          error.message || 'unable to create team at this time.',
-        )
+  const createTeam = React.useCallback(
+    async (contestId, name, companyName, avatarFormData) => {
+      if (createTeamLoading) {
         return null
-      } else {
-        window.location.href = '/'
       }
-    } catch (error) {
-      setCreateTeamLoading(false)
-      setCreateTeamError(error.message)
-      return null
-    }
-  }, [])
+      setCreateTeamLoading(true)
+      setCreateTeamError('')
+      try {
+        const [response, error] = await post(`/teams.json`, {
+          contest_id: contestId,
+          name,
+          company_name: companyName,
+        })
+        setCreateTeamLoading(false)
+        if (error) {
+          setCreateTeamError(
+            error.message || 'unable to create team at this time.',
+          )
+          return null
+        } else {
+          await fetch('/upload-team-avatar', {
+            method: 'PUT',
+            headers: {
+              Accept: 'application/json',
+            },
+            body: avatarFormData,
+          })
+          window.location.href = '/'
+        }
+      } catch (error) {
+        setCreateTeamLoading(false)
+        setCreateTeamError(error.message)
+        return null
+      }
+    },
+    [],
+  )
 
   const [joinTeamLoading, setJoinTeamLoading] = React.useState(false)
   const [joinTeamError, setJoinTeamError] = React.useState('')

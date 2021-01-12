@@ -26,6 +26,12 @@
   margin-top: 1rem;
 }
 
+.Team .file-input {
+  margin-top: 1rem;
+  width: 100%;
+  overflow: hidden;
+}
+
 .Team .team-submit {
   margin-top: 1rem;
 }
