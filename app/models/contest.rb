@@ -3,6 +3,7 @@ class Contest < ApplicationRecord
   has_many :teams_users, through: :teams
   has_many :posts, through: :teams_users
   has_many :content
+  has_many :challenges
 
   validates_presence_of :name, :start_date, :end_date
   validate :dates
@@ -15,6 +16,13 @@ class Contest < ApplicationRecord
 
   def faq
     content.find_by content_type: :faq
+  end
+
+  def daily_challenge
+    challenge = challenges.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).last
+    challenge.attributes.merge({
+      image: challenge.image_url
+    })
   end
 
   def all_posts

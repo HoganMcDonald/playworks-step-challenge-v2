@@ -3,5 +3,11 @@ class Challenge < ApplicationRecord
 
   has_one_attached :image
 
-  validates_presence_of :name, :description, :due_date
+  validates_presence_of :description
+
+  def image_url
+    image.attached? ?
+      Rails.application.routes.url_helpers.rails_blob_url(image, only_path: true) :
+      nil
+  end
 end

@@ -2,7 +2,8 @@
   user: current_user&.serialized,
   team: current_user&.current_team&.serialized,
   contest: current_user&.current_team&.contest&.attributes&.merge({
-    topSteppers: current_user&.current_team&.contest&.top_steppers
+    topSteppers: current_user&.current_team&.contest&.top_steppers,
+    dailyChallenge: current_user&.current_team&.contest&.daily_challenge
   }),
   leaderboard: current_user&.current_team&.contest&.leaderboard,
   rules: current_user&.current_team&.contest&.rules&.text,

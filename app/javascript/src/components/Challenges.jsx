@@ -21,8 +21,8 @@ const Challenges = ({ teamOnly }) => {
       </div>
       <Grid container spacing={2} justify="center">
         {items.map((item, i) => (
-          <Grid item>
-            <Card key={i}>
+          <Grid item key={i}>
+            <Card>
               <div className="challengeOfTheDay">
                 <div className="challengeOfTheDaySubtitleAndDescription">
                   <h5>

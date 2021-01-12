@@ -11,8 +11,8 @@
 <!-- - Add team photo to team page - 15mins -->
 <!-- - hook up forgot password email in prod - 15mins -->
 11
-- display posts - 20 mins
-- admin page - 1hr
+<!-- - display posts - 20 mins -->
+<!-- - admin page - 1hr -->
 12
 - challenges - 40 mins
 - Caption optional - show daily challenge - 15mins
@@ -23,3 +23,4 @@
 - Admins/captains see user steps pages and can delete - 40mins
 - Admins/Captains can delete steps or posts for team members - 1hr
 2
+- Admin can switch active contest / show in bottom of screen - 1hr

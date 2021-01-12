@@ -11,6 +11,7 @@ import TeamHome from './pages/TeamHome'
 import Steps from './pages/Steps'
 import Post from './pages/Post'
 import Rules from './pages/Rules'
+import Admin from './pages/Admin'
 import { useStore } from './store'
 
 const AuthenticatedRoute = ({ path, user, children }) => {
@@ -76,6 +77,9 @@ export default function Router({ data }) {
         </AuthenticatedRoute>
         <AuthenticatedRoute path="/rules" user={data.user}>
           <Rules />
+        </AuthenticatedRoute>
+        <AuthenticatedRoute path="/admin" user={data.user}>
+          {data.user.role === 'admin' ? <Admin /> : <Redirect to="/" />}
         </AuthenticatedRoute>
         <AuthenticatedRoute path="/" user={data.user}>
           <Home />

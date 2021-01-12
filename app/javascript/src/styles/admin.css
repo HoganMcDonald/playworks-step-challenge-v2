@@ -1,0 +1,27 @@
+.Admin {
+  min-height: 100vh;
+}
+
+.Admin .logo {
+  width: 10rem;
+}
+
+.Admin form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 60ch;
+}
+
+.Admin .file-input {
+  width: 100%;
+  overflow: hidden;
+}
+
+.Admin .admin-input {
+  margin-top: 1rem;
+}
+
+.Admin .admin-submit {
+  margin-top: 1rem;
+}

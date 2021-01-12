@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/steps', to: 'home#index'
   get '/post', to: 'home#index'
   get '/rules', to: 'home#index'
+  get '/admin', to: 'home#index'
 
   put '/upload-user-avatar', to: 'avatar#upload_user_avatar'
   put '/upload-team-avatar', to: 'avatar#upload_team_avatar'
@@ -20,4 +21,5 @@ Rails.application.routes.draw do
   resources :teams, only: [:index, :update, :create], defaults: { format: :json }
   resources :steps, only: [:create], defaults: { format: :json }
   resources :posts, only: [:create]
+  resources :challenges, only: [:create]
 end

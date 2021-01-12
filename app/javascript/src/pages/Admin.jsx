@@ -2,57 +2,59 @@ import React from 'react'
 import { TextField, Button } from '@material-ui/core'
 
 import Nav from '../components/Nav'
-import '../styles/post.css'
-import { useStore } from '../store'
+import '../styles/admin.css'
 
-const Post = () => {
-  const { team } = useStore()
+const Admin = () => {
+  const [error, setError] = React.useState('')
 
   const handleSubmit = React.useCallback(
-    (e) => {
+    async (e) => {
       e.preventDefault()
+      setError('')
 
-      const text = e.target['text'].value
+      const text = e.target['description'].value
       const image = e.target['image'].files[0]
-      const team_id = team.id
 
       const formData = new FormData()
 
-      formData.append('text', text)
+      formData.append('description', text)
       formData.append('image', image)
-      formData.append('team_id', team_id)
 
-      fetch('/posts', {
+      const response = await fetch('/challenges', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
         },
         body: formData,
-      }).then(() => {
-        window.location.href = '/team/home'
       })
+      if (response.status > 399) {
+        const body = await response.json()
+        setError(body.message || 'Unable to create challenge at this time.')
+      } else {
+        window.location.reload()
+      }
     },
-    [team],
+    [setError],
   )
 
   return (
-    <main className="Post">
+    <main className="Admin">
       <Nav />
-      <h2>Upload Photo to Team Feed</h2>
+      <h2>Create Daily Challenge</h2>
       <form onSubmit={handleSubmit}>
         <label>
-          Image
           <input className="file-input" name="image" type="file" required />
         </label>
         <TextField
-          className="post-input"
-          name="text"
-          label="Caption (optional)"
+          className="admin-input"
+          name="description"
+          label="Description"
           variant="outlined"
           type="number"
           multiline
           rows={4}
         />
+        {error && <p className="inline-alert">{error}</p>}
         <Button
           variant="contained"
           style={{
@@ -69,8 +71,9 @@ const Post = () => {
           Submit
         </Button>
       </form>
+      <h2>Today's Challenge </h2>
     </main>
   )
 }
 
-export default Post
+export default Admin

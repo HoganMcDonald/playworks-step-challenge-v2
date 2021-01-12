@@ -3,12 +3,18 @@ class User < ApplicationRecord
   has_many :teams, through: :teams_users
   has_many :steps, through: :teams_users
 
+  enum role: { standard: 0, admin: 2 }
+
   has_one_attached :avatar
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def current_contest
+    Contest.last
+  end
 
   def current_team
     teams.joins(:contest).where('contests.end_date > ?', DateTime.now).last
@@ -26,6 +32,7 @@ class User < ApplicationRecord
       email: email,
       name: name,
       avatar: avatar_url,
+      role: role,
       steps: steps.all.map do |step|
           {
             id: step.id,
