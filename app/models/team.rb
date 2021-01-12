@@ -8,6 +8,12 @@ class Team < ApplicationRecord
 
   validates_presence_of :name, :company_name
 
+  def avatar_url
+    avatar.attached? ?
+      Rails.application.routes.url_helpers.rails_blob_url(avatar, only_path: true) :
+      nil
+  end
+
   def total_steps
     steps.sum do |step|
       step.count
@@ -20,11 +26,13 @@ class Team < ApplicationRecord
       name: name,
       companyName: company_name,
       contestId: contest_id,
+      avatar: avatar_url,
       leaderboard: teams_users.includes(:user, :steps).map do |tu|
           {
             id: tu.user_id,
             name: tu.user.name,
-            sum: tu.total_steps
+            sum: tu.total_steps,
+            avatar: tu.user.avatar_url
           }
         end.sort_by { |tu| -tu[:sum] },
       steps: steps.includes(:user).all.map do |step|

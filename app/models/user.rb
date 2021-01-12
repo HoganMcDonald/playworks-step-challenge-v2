@@ -14,11 +14,18 @@ class User < ApplicationRecord
     teams.joins(:contest).where('contests.end_date > ?', DateTime.now).last
   end
 
+  def avatar_url
+    avatar.attached? ?
+      Rails.application.routes.url_helpers.rails_blob_url(avatar, only_path: true) :
+      nil
+  end
+
   def serialized
     {
       id: id,
       email: email,
       name: name,
+      avatar: avatar_url,
       steps: steps.all.map do |step|
           {
             id: step.id,
