@@ -556,6 +556,32 @@ export const useStore = () => {
     }
   }, [])
 
+  const [deletePostsLoading, setDeletePostsLoading] = React.useState(false)
+  const [deletePostsError, setDeletePostsError] = React.useState('')
+  const deletePosts = React.useCallback(async (postId) => {
+    if (deletePostsLoading) {
+      return null
+    }
+    setDeletePostsLoading(true)
+    setDeletePostsError('')
+    try {
+      const [response, error] = await destroy(`/posts/${postId}.json`)
+      setDeletePostsLoading(false)
+      if (error) {
+        setDeletePostsError(
+          error.message || 'Unable to delete post at this time.',
+        )
+        return null
+      } else {
+        window.location.reload()
+      }
+    } catch (error) {
+      setDeletePostsLoading(false)
+      setDeletePostsError(error.message)
+      return null
+    }
+  }, [])
+
   return {
     currentUser,
     team,
@@ -598,5 +624,7 @@ export const useStore = () => {
     createStepsError,
     deleteSteps,
     deleteStepsError,
+    deletePosts,
+    deletePostsError,
   }
 }

@@ -1,18 +1,30 @@
 import React from 'react'
 import moment from 'moment'
 import { Box, Card, Grid } from '@material-ui/core'
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
 
 import { useStore } from '../store'
 import DailyChallenge from './DailyChallenge'
 import '../styles/challenges.css'
 
 const Challenges = ({ teamOnly }) => {
-  const { posts, team } = useStore()
-  // TODO:
+  const { posts, team, currentUser, deletePosts } = useStore()
+
+  const handleDelete = React.useCallback(
+    (postId) => {
+      deletePosts(postId)
+    },
+    [deletePosts],
+  )
 
   const items = React.useMemo(() => {
     return posts.filter((post) => !teamOnly || post.teamId == team.id)
   }, [posts, team, teamOnly])
+
+  const canDelete = React.useMemo(() => {
+    return (post) =>
+      post.userId == currentUser.id || currentUser.role === 'admin'
+  }, [currentUser])
 
   const challenges = []
   return (
@@ -23,25 +35,35 @@ const Challenges = ({ teamOnly }) => {
           <Grid item key={i}>
             <Card>
               <div className="challengeOfTheDay">
-                <div className="challengeOfTheDaySubtitleAndDescription">
-                  <h5>
-                    <Box display="inline">
-                      <p style={{ marginTop: '1rem' }}>
-                        {item.name} - {moment(item.date).format('MMM DD, Y')}
-                      </p>
-                      <img
-                        src={item.image}
-                        alt=""
+                <div
+                  className="challengeOfTheDaySubtitleAndDescription"
+                  style={{ position: 'relative' }}>
+                  <Box display="inline">
+                    {canDelete(item) && (
+                      <DeleteForeverIcon
                         style={{
-                          height: 'auto',
-                          maxHeight: '6rem',
-                          maxWidth: '100%',
+                          cursor: 'pointer',
+                          position: 'absolute',
+                          left: '0',
+                          top: '0',
                         }}
+                        onClick={() => handleDelete(item.id)}
                       />
-                      <p style={{ fontWeight: 500 }}>{item.text}</p>
-                    </Box>
-                  </h5>
-                  <h5>{Card.text}</h5>
+                    )}
+                    <h5 style={{ marginTop: '1rem' }}>
+                      {item.name} - {moment(item.date).format('MMM DD, Y')}
+                    </h5>
+                    <img
+                      src={item.image}
+                      alt=""
+                      style={{
+                        height: 'auto',
+                        maxHeight: '6rem',
+                        maxWidth: '100%',
+                      }}
+                    />
+                    <p style={{ fontWeight: 500 }}>{item.text}</p>
+                  </Box>
                 </div>
               </div>
             </Card>
