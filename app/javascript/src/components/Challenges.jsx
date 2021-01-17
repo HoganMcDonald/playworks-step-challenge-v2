@@ -23,7 +23,9 @@ const Challenges = ({ teamOnly }) => {
 
   const canDelete = React.useMemo(() => {
     return (post) =>
-      post.userId == currentUser.id || currentUser.role === 'admin'
+      post.userId == currentUser.id ||
+      currentUser.role === 'admin' ||
+      post.captainId == currentUser.id
   }, [currentUser])
 
   const challenges = []

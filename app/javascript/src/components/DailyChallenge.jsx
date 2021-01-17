@@ -6,7 +6,6 @@ import { useStore } from '../store'
 const DailyChallenge = () => {
   const { contest } = useStore()
   const { dailyChallenge } = contest
-  console.log(dailyChallenge)
 
   return !!dailyChallenge ? (
     <div

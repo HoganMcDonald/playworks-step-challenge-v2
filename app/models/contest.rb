@@ -42,7 +42,8 @@ class Contest < ApplicationRecord
         name: post.teams_user.user.name,
         image: post.image_url,
         text: post.text,
-        date: post.created_at
+        date: post.created_at,
+        captainId: post.team.captain_id
       }
     end
   end

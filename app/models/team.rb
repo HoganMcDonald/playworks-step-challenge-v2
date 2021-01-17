@@ -1,5 +1,6 @@
 class Team < ApplicationRecord
   belongs_to :contest
+  belongs_to :captain, class_name: 'User'
   has_many :teams_users
   has_many :users, through: :teams_users
   has_many :steps, through: :teams_users
@@ -27,6 +28,7 @@ class Team < ApplicationRecord
       companyName: company_name,
       contestId: contest_id,
       avatar: avatar_url,
+      captain: captain,
       leaderboard: teams_users.includes(:user, :steps).map do |tu|
           {
             id: tu.user_id,
@@ -41,6 +43,7 @@ class Team < ApplicationRecord
             name: step.user.name,
             userId: step.user.id,
             sum: step.count,
+            captainId: captain_id,
             createdAt: created_at
           }
         end

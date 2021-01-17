@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_17_191927) do
+ActiveRecord::Schema.define(version: 2021_01_17_213234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,8 @@ ActiveRecord::Schema.define(version: 2021_01_17_191927) do
     t.bigint "contest_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "captain_id"
+    t.index ["captain_id"], name: "index_teams_on_captain_id"
     t.index ["contest_id"], name: "index_teams_on_contest_id"
   end
 
@@ -138,6 +140,7 @@ ActiveRecord::Schema.define(version: 2021_01_17_191927) do
   add_foreign_key "challenges", "contests"
   add_foreign_key "steps", "teams_users"
   add_foreign_key "teams", "contests"
+  add_foreign_key "teams", "users", column: "captain_id"
   add_foreign_key "teams_users", "teams"
   add_foreign_key "teams_users", "users"
 end

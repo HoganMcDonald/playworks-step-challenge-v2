@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   belongs_to :teams_user
+  has_one :team, through: :teams_user
 
   has_one_attached :image
 

@@ -16,7 +16,9 @@ const StepTable = ({ steps }) => {
 
   const canDelete = React.useMemo(() => {
     return (step) =>
-      step.userId == currentUser.id || currentUser.role === 'admin'
+      step.userId == currentUser.id ||
+      currentUser.role === 'admin' ||
+      step.captainId == currentUser.id
   }, [currentUser])
 
   return (
