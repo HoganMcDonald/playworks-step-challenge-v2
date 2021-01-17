@@ -3,7 +3,7 @@ class ChallengesController < ApplicationController
   respond_to :json
 
   def create
-    challenge = Challenge.create! description: params[:description], image: params[:image], contest: current_user.current_contest
+    challenge = Challenge.create! description: params[:description], date: params[:date], image: params[:image], contest: current_user.current_contest
 
     render json: challenge
   end

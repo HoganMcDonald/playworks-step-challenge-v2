@@ -22,10 +22,10 @@
 <!-- - investigate resett password - 10 mins -->
 <!-- - delete shauna's duplicate account - 5 mins -->
 1
-- Add date picker for steps - 10mins
+<!-- - Add date picker for steps - 10mins -->
 - Add date picker for challenges - 10mins
-- delete past steps - 20 mins
 1:30
+- delete past steps - 20 mins
 - Admins/captains see user steps pages and can delete - 40mins
 2
 - Admins/Captains can delete steps or posts for team members - 1hr

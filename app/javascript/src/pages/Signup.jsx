@@ -59,7 +59,13 @@ const Signup = () => {
           required
           onChange={(e) => setPassword(e.target.value)}
         />
-        <input className="file-input" name="avatar" type="file" required />
+        <input
+          className="file-input"
+          name="avatar"
+          type="file"
+          accept=".png,.jpg,.jpeg,.gif"
+          required
+        />
         {signupError && <p className="inline-alert">{signupError}</p>}
         <Button
           variant="contained"

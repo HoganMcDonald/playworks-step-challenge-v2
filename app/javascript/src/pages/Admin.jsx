@@ -14,11 +14,13 @@ const Admin = () => {
       setError('')
 
       const text = e.target['description'].value
+      const date = e.target['date'].value
       const image = e.target['image'].files[0]
 
       const formData = new FormData()
 
       formData.append('description', text)
+      formData.append('date', date)
       formData.append('image', image)
 
       const response = await fetch('/challenges', {
@@ -44,7 +46,13 @@ const Admin = () => {
       <h2>Create Daily Challenge</h2>
       <form onSubmit={handleSubmit}>
         <label>
-          <input className="file-input" name="image" type="file" required />
+          <input
+            className="file-input"
+            name="image"
+            type="file"
+            accept=".png,.jpg,.jpeg,.gif"
+            required
+          />
         </label>
         <TextField
           className="admin-input"
@@ -54,6 +62,17 @@ const Admin = () => {
           type="number"
           multiline
           rows={4}
+        />
+        <TextField
+          className="admin-input"
+          name="date"
+          label="Date"
+          variant="outlined"
+          type="date"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          required
         />
         {error && <p className="inline-alert">{error}</p>}
         <Button

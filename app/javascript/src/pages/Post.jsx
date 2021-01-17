@@ -43,7 +43,13 @@ const Post = () => {
       <form onSubmit={handleSubmit}>
         <label>
           Image
-          <input className="file-input" name="image" type="file" required />
+          <input
+            className="file-input"
+            name="image"
+            type="file"
+            accept=".png,.jpg,.jpeg,.gif"
+            required
+          />
         </label>
         <TextField
           className="post-input"

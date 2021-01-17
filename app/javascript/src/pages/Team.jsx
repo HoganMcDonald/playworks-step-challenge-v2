@@ -110,7 +110,13 @@ const Team = () => {
             required
             onChange={(e) => setCompanyName(e.target.value)}
           />
-          <input className="file-input" name="avatar" type="file" required />
+          <input
+            className="file-input"
+            name="avatar"
+            type="file"
+            accept=".png,.jpg,.jpeg,.gif"
+            required
+          />
           {createTeamError && <p className="inline-alert">{createTeamError}</p>}
           <Button
             variant="contained"

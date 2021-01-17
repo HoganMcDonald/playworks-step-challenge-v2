@@ -19,7 +19,7 @@ class Contest < ApplicationRecord
   end
 
   def daily_challenge
-    challenge = challenges.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).last
+    challenge = challenges.where(date: Date.today).last
     challenge&.attributes&.merge({
       image: challenge.image_url
     })
