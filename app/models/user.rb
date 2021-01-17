@@ -38,6 +38,7 @@ class User < ApplicationRecord
             id: step.id,
             name: name,
             sum: step.count,
+            userId: id,
             date: step.date
           }
         end

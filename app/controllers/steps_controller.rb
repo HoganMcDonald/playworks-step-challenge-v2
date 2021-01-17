@@ -8,4 +8,9 @@ class StepsController < ApplicationController
 
     render json: step
   end
+
+  def destroy
+    step = Step.find params[:id]
+    step.destroy
+  end
 end

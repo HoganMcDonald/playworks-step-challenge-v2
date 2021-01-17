@@ -29,45 +29,7 @@ const Nav = () => {
         </Link>
       </div>
 
-      {currentUser && currentUser.admin ? (
-        <div className="nav-right">
-          <Button
-            style={{ verticalAlign: 'baseline' }}
-            aria-controls="simple-menu"
-            aria-haspopup="true"
-            onClick={handleClick}>
-            <MenuIcon fontSize={'default'} style={{ color: 'black' }} />
-          </Button>
-          <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}>
-            <MenuItem onClick={handleClose}>
-              <Link className="nav-link" to="/admin">
-                Contests
-              </Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link className="nav-link" to="/admin/challenges">
-                Challenges
-              </Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link className="nav-link" to="/admin/rules">
-                Rules
-              </Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link className="nav-link" to="/admin/faq">
-                FAQ
-              </Link>
-            </MenuItem>
-            <MenuItem onClick={handleLogout}>Logout</MenuItem>
-          </Menu>
-        </div>
-      ) : !currentUser ? null : (
+      {!currentUser ? null : (
         <div className="nav-right">
           <Button
             style={{ verticalAlign: 'baseline' }}

@@ -517,7 +517,7 @@ export const useStore = () => {
       setCreateStepsLoading(false)
       if (error) {
         setCreateStepsError(
-          error.message || 'unable submit steps at this time.',
+          error.message || 'Unable to submit steps at this time.',
         )
         return null
       } else {
@@ -526,6 +526,32 @@ export const useStore = () => {
     } catch (error) {
       setCreateStepsLoading(false)
       setCreateStepsError(error.message)
+      return null
+    }
+  }, [])
+
+  const [deleteStepsLoading, setDeleteStepsLoading] = React.useState(false)
+  const [deleteStepsError, setDeleteStepsError] = React.useState('')
+  const deleteSteps = React.useCallback(async (stepId) => {
+    if (deleteStepsLoading) {
+      return null
+    }
+    setDeleteStepsLoading(true)
+    setDeleteStepsError('')
+    try {
+      const [response, error] = await destroy(`/steps/${stepId}.json`)
+      setDeleteStepsLoading(false)
+      if (error) {
+        setDeleteStepsError(
+          error.message || 'Unable to delete steps at this time.',
+        )
+        return null
+      } else {
+        window.location.reload()
+      }
+    } catch (error) {
+      setDeleteStepsLoading(false)
+      setDeleteStepsError(error.message)
       return null
     }
   }, [])
@@ -570,5 +596,7 @@ export const useStore = () => {
     joinTeamError,
     createSteps,
     createStepsError,
+    deleteSteps,
+    deleteStepsError,
   }
 }

@@ -39,6 +39,7 @@ class Team < ApplicationRecord
           {
             id: step.id,
             name: step.user.name,
+            userId: step.user.id,
             sum: step.count,
             createdAt: created_at
           }

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   resources :contests, only: [:index, :show, :create], defaults: { format: :json }
   resources :teams, only: [:index, :update, :create], defaults: { format: :json }
-  resources :steps, only: [:create], defaults: { format: :json }
+  resources :steps, only: [:create, :destroy], defaults: { format: :json }
   resources :posts, only: [:create]
   resources :challenges, only: [:create]
 end

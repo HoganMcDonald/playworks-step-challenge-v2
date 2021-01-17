@@ -25,6 +25,14 @@ class Contest < ApplicationRecord
     })
   end
 
+  def scheduled_challenges
+    challenges.map do |challenge|
+      challenge.attributes.merge({
+        image: challenge.image_url
+      })
+    end
+  end
+
   def all_posts
     posts.includes(teams_user: :user).where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).map do |post|
       {

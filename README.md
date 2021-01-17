@@ -23,14 +23,15 @@
 <!-- - delete shauna's duplicate account - 5 mins -->
 1
 <!-- - Add date picker for steps - 10mins -->
-- Add date picker for challenges - 10mins
 1:30
+<!-- - Add date picker for challenges - 10mins -->
 - delete past steps - 20 mins
-- Admins/captains see user steps pages and can delete - 40mins
 2
+- Admins/captains see user steps pages and can delete - 40mins
 - Admins/Captains can delete steps or posts for team members - 1hr
 - markdown editor for rules/faq
 - team upload new image - 30 mins
+- display scheduled challenges
 - user profile page - 1hr
 3
 - Admin can switch active contest / show in bottom of screen - 1hr
