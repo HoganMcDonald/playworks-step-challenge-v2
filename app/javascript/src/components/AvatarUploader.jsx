@@ -54,19 +54,34 @@ const AvatarUploader = ({ image, type, containerSize, editable }) => {
     window.location.reload()
   })
 
-  return (
+  return !image && !editable ? null : (
     <span style={{ position: 'relative', marginBottom: '1rem' }}>
-      <img
-        src={image}
-        style={{
-          maxHeight: '100%',
-          maxWidth: '100%',
-          width: 'auto',
-          height: 'auto',
-          margin: '0',
-          ...containerSize,
-        }}
-      />
+      {image ? (
+        <img
+          src={image}
+          style={{
+            maxHeight: '100%',
+            maxWidth: '100%',
+            width: 'auto',
+            height: 'auto',
+            margin: '0',
+            ...containerSize,
+          }}
+        />
+      ) : (
+        <p
+          style={{
+            background: '#7b7e81',
+            color: '#fff',
+            padding: '8px 4px',
+            marginBottom: '6px',
+            cursor: 'pointer',
+            userSelect: 'none',
+          }}
+          onClick={() => setOpen(true)}>
+          Upload a {type} Image
+        </p>
+      )}
       {editable && (
         <CloudUploadIcon
           style={{
