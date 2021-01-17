@@ -7,11 +7,36 @@ import Home from './pages/Home'
 import ForgotPassword from './pages/ForgotPassword'
 import ResetPassword from './pages/ResetPassword'
 import TeamJoin from './pages/Team'
-import TeamHome from './pages/TeamHome'
-import Steps from './pages/Steps'
-import Post from './pages/Post'
-import Rules from './pages/Rules'
-const Admin = React.lazy(() => import('./pages/Admin'))
+const TeamHome = React.lazy(() =>
+  import(
+    /* webpackChunkName: "team" */
+    /* webpackPrefetch: true */ './pages/TeamHome'
+  ),
+)
+const Steps = React.lazy(() =>
+  import(
+    /* webpackChunkName: "steps" */
+    /* webpackPrefetch: true */ './pages/Steps'
+  ),
+)
+const Post = React.lazy(() =>
+  import(
+    /* webpackChunkName: "post" */
+    /* webpackPrefetch: true */ './pages/Post'
+  ),
+)
+const Rules = React.lazy(() =>
+  import(
+    /* webpackChunkName: "rules" */
+    /* webpackPrefetch: true */ './pages/Rules'
+  ),
+)
+const Admin = React.lazy(() =>
+  import(
+    /* webpackChunkName: "admin" */
+    /* webpackPrefetch: true */ './pages/Admin'
+  ),
+)
 import { useStore } from './store'
 
 const AuthenticatedRoute = ({ path, user, children }) => {
@@ -64,25 +89,35 @@ export default function Router({ data }) {
           <ResetPassword />
         </Route>
         <AuthenticatedRoute path="/team/home" user={data.user}>
-          <TeamHome />
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <TeamHome />
+          </React.Suspense>
         </AuthenticatedRoute>
         <AuthenticatedRoute path="/team" user={data.user}>
-          <TeamJoin />
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <TeamJoin />
+          </React.Suspense>
         </AuthenticatedRoute>
         <AuthenticatedRoute path="/steps" user={data.user}>
-          <Steps />
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <Steps />
+          </React.Suspense>
         </AuthenticatedRoute>
         <AuthenticatedRoute path="/post" user={data.user}>
-          <Post />
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <Post />
+          </React.Suspense>
         </AuthenticatedRoute>
         <AuthenticatedRoute path="/rules" user={data.user}>
-          <Rules />
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <Rules />
+          </React.Suspense>
         </AuthenticatedRoute>
         <AuthenticatedRoute path="/admin" user={data.user}>
           {data.user && data.user.role === 'admin' ? (
-            <Suspense fallback={<div>Loading...</div>}>
+            <React.Suspense fallback={<div>Loading...</div>}>
               <Admin />
-            </Suspense>
+            </React.Suspense>
           ) : (
             <Redirect to="/" />
           )}
