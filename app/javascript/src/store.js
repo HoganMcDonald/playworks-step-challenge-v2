@@ -502,7 +502,7 @@ export const useStore = () => {
 
   const [createStepsLoading, setCreateStepsLoading] = React.useState(false)
   const [createStepsError, setCreateStepsError] = React.useState('')
-  const createSteps = React.useCallback(async (count) => {
+  const createSteps = React.useCallback(async (count, date) => {
     if (createStepsLoading) {
       return null
     }
@@ -512,6 +512,7 @@ export const useStore = () => {
       const [response, error] = await post(`/steps.json`, {
         team_id: team.id,
         count,
+        date,
       })
       setCreateStepsLoading(false)
       if (error) {

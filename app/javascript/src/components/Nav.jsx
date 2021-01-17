@@ -99,7 +99,7 @@ const Nav = () => {
             </MenuItem>
             <MenuItem onClick={handleClose}>
               <Link className="nav-link" to="/team/home">
-                Team Page
+                My Team
               </Link>
             </MenuItem>
             <MenuItem onClick={handleClose}>

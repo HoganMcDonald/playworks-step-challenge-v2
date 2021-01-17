@@ -8,15 +8,16 @@ import StepTable from '../components/StepTable'
 
 const Steps = () => {
   const [count, setCount] = React.useState(0)
+  const [date, setDate] = React.useState('')
 
   const { createSteps, createStepsError, steps } = useStore()
 
   const handleSubmit = React.useCallback(
     (e) => {
       e.preventDefault()
-      createSteps(count)
+      createSteps(count, date)
     },
-    [count],
+    [count, date],
   )
 
   return (
@@ -35,6 +36,19 @@ const Steps = () => {
             type="number"
             required
             onChange={(e) => setCount(e.target.value)}
+          />
+          <TextField
+            className="steps-input"
+            name="date"
+            value={date}
+            label="Date"
+            variant="outlined"
+            type="date"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            required
+            onChange={(e) => setDate(e.target.value)}
           />
           {createStepsError && (
             <p className="inline-alert">{createStepsError}</p>

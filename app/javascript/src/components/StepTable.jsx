@@ -9,8 +9,8 @@ const StepTable = ({ steps }) => {
         <thead>
           <tr>
             <th>Name</th>
-            <th>steps</th>
-            <th>date</th>
+            <th>Steps</th>
+            <th>Date</th>
           </tr>
         </thead>
         <tbody>
@@ -18,7 +18,7 @@ const StepTable = ({ steps }) => {
             <tr key={step.id}>
               <td>{step.name}</td>
               <td>{step.sum}</td>
-              <td>{moment(step.createdAt).format('MMM DD, YY')}</td>
+              <td>{moment(step.date).format('MMM DD, YY')}</td>
             </tr>
           ))}
         </tbody>

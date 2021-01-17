@@ -38,7 +38,7 @@ class User < ApplicationRecord
             id: step.id,
             name: name,
             sum: step.count,
-            createdAt: created_at
+            date: step.date
           }
         end
     }

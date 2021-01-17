@@ -18,9 +18,9 @@
 <!-- - Caption optional 10 mins -->
 <!-- - show daily challenge - 15mins -->
 -----------------------------
-- fix images - 30 mins
-- investigate resett password - 10 mins
-- delete shauna's duplicate account - 5 mins
+<!-- - fix images - 30 mins -->
+<!-- - investigate resett password - 10 mins -->
+<!-- - delete shauna's duplicate account - 5 mins -->
 1
 - Add date picker for steps - 10mins
 - Add date picker for challenges - 10mins
@@ -30,6 +30,8 @@
 2
 - Admins/Captains can delete steps or posts for team members - 1hr
 - markdown editor for rules/faq
+- team upload new image - 30 mins
+- user profile page - 1hr
 3
 - Admin can switch active contest / show in bottom of screen - 1hr
 - admin can create new contests
