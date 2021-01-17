@@ -73,7 +73,7 @@ const AvatarUploader = ({ image, type, containerSize, editable }) => {
           style={{
             background: '#7b7e81',
             color: '#fff',
-            padding: '8px 4px',
+            padding: '4px 8px',
             marginBottom: '6px',
             cursor: 'pointer',
             userSelect: 'none',
