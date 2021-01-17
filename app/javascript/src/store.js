@@ -530,6 +530,36 @@ export const useStore = () => {
     }
   }, [])
 
+  const [createContentLoading, setCreateContentLoading] = React.useState(false)
+  const [createContentError, setCreateContentError] = React.useState('')
+  const createContent = React.useCallback(async (text, contentType) => {
+    if (createContentLoading) {
+      return null
+    }
+    setCreateContentLoading(true)
+    setCreateContentError('')
+    try {
+      const [response, error] = await post(`/content.json`, {
+        contest_id: contest.id,
+        text,
+        content_type: contentType,
+      })
+      setCreateContentLoading(false)
+      if (error) {
+        setCreateContentError(
+          error.message || `Unable to update ${contentType}.`,
+        )
+        return null
+      } else {
+        window.location.reload()
+      }
+    } catch (error) {
+      setCreateContentLoading(false)
+      setCreateContentError(error.message)
+      return null
+    }
+  }, [])
+
   const [deleteStepsLoading, setDeleteStepsLoading] = React.useState(false)
   const [deleteStepsError, setDeleteStepsError] = React.useState('')
   const deleteSteps = React.useCallback(async (stepId) => {
@@ -622,6 +652,8 @@ export const useStore = () => {
     joinTeamError,
     createSteps,
     createStepsError,
+    createContent,
+    createContentError,
     deleteSteps,
     deleteStepsError,
     deletePosts,

@@ -1,12 +1,20 @@
 import React from 'react'
 import { TextField, Button } from '@material-ui/core'
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css'
 
 import Nav from '../components/Nav'
 import DailyChallenge from '../components/DailyChallenge'
+import { useStore } from '../store'
 import '../styles/admin.css'
 
 const Admin = () => {
   const [error, setError] = React.useState('')
+
+  const { rules, faq, createContent } = useStore()
+
+  const [editRules, setRules] = React.useState(rules)
+  const [editFaq, setFaq] = React.useState(faq)
 
   const handleSubmit = React.useCallback(
     async (e) => {
@@ -40,10 +48,54 @@ const Admin = () => {
     [setError],
   )
 
+  const handleUpdateContent = React.useCallback(
+    (type, text) => {
+      createContent(text, type)
+    },
+    [rules, faq, editRules, editFaq, createContent],
+  )
+
   return (
     <main className="Admin">
       <Nav />
-      <h2>Create Daily Challenge</h2>
+      <h2>Update Contest Rules</h2>
+      <h5>Rules</h5>
+      <ReactQuill theme="snow" value={editRules} onChange={setRules} />
+      <Button
+        variant="contained"
+        style={{
+          color: 'white',
+          marginTop: '1rem',
+          fontSize: 18,
+          background: '#054f95',
+        }}
+        color="primary"
+        className="btn"
+        type="submit"
+        name="submit"
+        value="Log In"
+        onClick={() => handleUpdateContent('rules', editRules)}>
+        Save
+      </Button>
+      <h5 style={{ marginTop: '1rem' }}>Faq</h5>
+      <ReactQuill theme="snow" value={editFaq} onChange={setFaq} />
+      <Button
+        variant="contained"
+        style={{
+          color: 'white',
+          marginTop: '1rem',
+          fontSize: 18,
+          background: '#054f95',
+        }}
+        color="primary"
+        className="btn"
+        type="submit"
+        name="submit"
+        value="Log In"
+        onClick={() => handleUpdateContent('faq', editFaq)}>
+        Save
+      </Button>
+      <h2 style={{ marginTop: '1rem' }}>Create Daily Challenge</h2>
       <form onSubmit={handleSubmit}>
         <label>
           <input

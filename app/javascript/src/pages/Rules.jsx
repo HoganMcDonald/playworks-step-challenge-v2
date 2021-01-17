@@ -14,11 +14,12 @@ const Rules = () => {
         container
         direction="column"
         alignItems="center"
-        className="rulesFaq">
-        <h2>Rules</h2>
-        <p>{rules}</p>
-        <h2>Faq</h2>
-        <p>{faq}</p>
+        className="rulesFaq"
+        style={{ maxWidth: '90ch' }}>
+        <h1>Rules</h1>
+        <div dangerouslySetInnerHTML={{ __html: rules }} />
+        <h1>FAQ</h1>
+        <div dangerouslySetInnerHTML={{ __html: faq }} />
       </Grid>
     </main>
   )

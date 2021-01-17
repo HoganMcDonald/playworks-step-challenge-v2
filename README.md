@@ -27,9 +27,10 @@
 <!-- - Add date picker for challenges - 10mins -->
 <!-- - delete past steps - 20 mins -->
 2
-- Admins/Captains can delete steps or posts for team members - 1hr
-- Admins/captains see user steps pages and can delete - 40mins
+<!-- - Admins/Captains can delete steps or posts for team members - 1hr -->
 - markdown editor for rules/faq
+- create captains and backfill
+- Admins/captains see user steps pages and can delete - 40mins
 - team upload new image - 30 mins
 - display scheduled challenges
 - user profile page - 1hr

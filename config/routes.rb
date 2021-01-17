@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   resources :steps, only: [:create, :destroy], defaults: { format: :json }
   resources :posts, only: [:create, :destroy]
   resources :challenges, only: [:create]
+  resources :content, only: [:create]
 end
