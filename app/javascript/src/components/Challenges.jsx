@@ -60,8 +60,8 @@ const Challenges = ({ teamOnly }) => {
                       alt=""
                       style={{
                         height: 'auto',
-                        maxHeight: '6rem',
-                        maxWidth: '100%',
+                        maxHeight: '16rem',
+                        maxWidth: 'calc(100% - 1rem)',
                       }}
                     />
                     <p style={{ fontWeight: 500 }}>{item.text}</p>
