@@ -11,7 +11,7 @@ import TeamHome from './pages/TeamHome'
 import Steps from './pages/Steps'
 import Post from './pages/Post'
 import Rules from './pages/Rules'
-import Admin from './pages/Admin'
+const Admin = React.lazy(() => import('./pages/Admin'))
 import { useStore } from './store'
 
 const AuthenticatedRoute = ({ path, user, children }) => {
@@ -80,7 +80,9 @@ export default function Router({ data }) {
         </AuthenticatedRoute>
         <AuthenticatedRoute path="/admin" user={data.user}>
           {data.user && data.user.role === 'admin' ? (
-            <Admin />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Admin />
+            </Suspense>
           ) : (
             <Redirect to="/" />
           )}

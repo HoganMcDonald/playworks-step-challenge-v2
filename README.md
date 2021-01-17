@@ -29,13 +29,14 @@
 2
 <!-- - Admins/Captains can delete steps or posts for team members - 1hr -->
 <!-- - markdown editor for rules/faq -->
-- create captains and backfill
-- Admins/captains see user steps pages and can delete - 40mins
-- display scheduled challenges
+<!-- - create captains and backfill -->
+<!-- - Admins/captains see user steps pages and can delete - 40mins -->
+- display scheduled challenges - 30mins
 - team upload new image - 30 mins
 - user profile page - 1hr
 
 future
+- Admins can see team pages
 - Admin can switch active contest / show in bottom of screen - 1hr
 - admin can create new contests
 - download csv of participants in a contest
