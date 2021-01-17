@@ -612,6 +612,34 @@ export const useStore = () => {
     }
   }, [])
 
+  const [deleteChallengeLoading, setDeleteChallengeLoading] = React.useState(
+    false,
+  )
+  const [deleteChallengeError, setDeleteChallengeError] = React.useState('')
+  const deleteChallenge = React.useCallback(async (postId) => {
+    if (deleteChallengeLoading) {
+      return null
+    }
+    setDeleteChallengeLoading(true)
+    setDeleteChallengeError('')
+    try {
+      const [response, error] = await destroy(`/challenges/${postId}.json`)
+      setDeleteChallengeLoading(false)
+      if (error) {
+        setDeleteChallengeError(
+          error.message || 'Unable to delete post at this time.',
+        )
+        return null
+      } else {
+        window.location.reload()
+      }
+    } catch (error) {
+      setDeleteChallengeLoading(false)
+      setDeleteChallengeError(error.message)
+      return null
+    }
+  }, [])
+
   return {
     currentUser,
     team,
@@ -658,5 +686,7 @@ export const useStore = () => {
     deleteStepsError,
     deletePosts,
     deletePostsError,
+    deleteChallenge,
+    deleteChallengeError,
   }
 }

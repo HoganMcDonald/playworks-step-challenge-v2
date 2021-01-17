@@ -7,4 +7,9 @@ class ChallengesController < ApplicationController
 
     render json: challenge
   end
+
+  def destroy
+    challenge = Challenge.find params[:id]
+    challenge.destroy
+  end
 end

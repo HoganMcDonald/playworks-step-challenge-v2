@@ -1,6 +1,8 @@
 import React from 'react'
 import { TextField, Button } from '@material-ui/core'
 import ReactQuill from 'react-quill'
+import moment from 'moment'
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
 import 'react-quill/dist/quill.snow.css'
 
 import Nav from '../components/Nav'
@@ -11,7 +13,7 @@ import '../styles/admin.css'
 const Admin = () => {
   const [error, setError] = React.useState('')
 
-  const { rules, faq, createContent } = useStore()
+  const { rules, faq, createContent, contest, deleteChallenge } = useStore()
 
   const [editRules, setRules] = React.useState(rules)
   const [editFaq, setFaq] = React.useState(faq)
@@ -55,11 +57,17 @@ const Admin = () => {
     [rules, faq, editRules, editFaq, createContent],
   )
 
+  const handleDelete = React.useCallback(
+    (challengeId) => {
+      deleteChallenge(challengeId)
+    },
+    [deleteChallenge],
+  )
   return (
     <main className="Admin">
       <Nav />
       <h2>Update Contest Rules</h2>
-      <h5>Rules</h5>
+      <h3>Rules</h3>
       <ReactQuill theme="snow" value={editRules} onChange={setRules} />
       <Button
         variant="contained"
@@ -77,7 +85,7 @@ const Admin = () => {
         onClick={() => handleUpdateContent('rules', editRules)}>
         Save
       </Button>
-      <h5 style={{ marginTop: '1rem' }}>Faq</h5>
+      <h3 style={{ marginTop: '1rem' }}>Faq</h3>
       <ReactQuill theme="snow" value={editFaq} onChange={setFaq} />
       <Button
         variant="contained"
@@ -144,6 +152,41 @@ const Admin = () => {
         </Button>
       </form>
       <DailyChallenge />
+      <h2>Scheduled Challenges</h2>
+      <table style={{ maxWidth: '80ch', width: '100%' }}>
+        <thead>
+          <tr>
+            <th style={{ width: '1%' }}></th>
+            <th>Date</th>
+            <th>Text</th>
+            <th>Image</th>
+          </tr>
+        </thead>
+        <tbody>
+          {contest.scheduledChallenges.map((challenge, index) => (
+            <tr key={index}>
+              <td style={{ width: '1%' }}>
+                <DeleteForeverIcon
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => handleDelete(challenge.id)}
+                />
+              </td>
+              <td>{moment(challenge.date).format('MM/DD/Y')}</td>
+              <td>{challenge.description}</td>
+              <td>
+                <img
+                  src={challenge.image}
+                  style={{
+                    height: 'auto',
+                    maxWidth: '4rem',
+                    maxHeight: '4rem',
+                  }}
+                />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </main>
   )
 }
