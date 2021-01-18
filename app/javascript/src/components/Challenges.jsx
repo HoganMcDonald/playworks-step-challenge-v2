@@ -1,6 +1,5 @@
 import React from 'react'
-import moment from 'moment'
-import { Box, Card, Grid } from '@material-ui/core'
+import { Box, Card, Grid, Avatar } from '@material-ui/core'
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
 
 import { useStore } from '../store'
@@ -40,21 +39,16 @@ const Challenges = ({ teamOnly }) => {
                 <div
                   className="challengeOfTheDaySubtitleAndDescription"
                   style={{ position: 'relative' }}>
-                  <Box display="inline">
-                    {canDelete(item) && (
-                      <DeleteForeverIcon
-                        style={{
-                          cursor: 'pointer',
-                          position: 'absolute',
-                          left: '0',
-                          top: '0',
-                        }}
-                        onClick={() => handleDelete(item.id)}
-                      />
-                    )}
-                    <h5 style={{ marginTop: '1rem' }}>
-                      {item.name} - {moment(item.date).format('MMM DD, Y')}
-                    </h5>
+                  <Box display="block">
+                    <Avatar
+                      src={item.avatar}
+                      style={{
+                        position: 'absolute',
+                        top: '0.5rem',
+                        left: '0.5rem',
+                      }}
+                    />
+                    <h5 style={{ marginTop: '1rem' }}>{item.name}</h5>
                     <img
                       src={item.image}
                       alt=""
@@ -64,7 +58,19 @@ const Challenges = ({ teamOnly }) => {
                         maxWidth: 'calc(100% - 1rem)',
                       }}
                     />
-                    <p style={{ fontWeight: 500 }}>{item.text}</p>
+                    {item.text && (
+                      <p style={{ fontWeight: 500 }}>{item.text}</p>
+                    )}
+                    {canDelete(item) && (
+                      <DeleteForeverIcon
+                        style={{
+                          cursor: 'pointer',
+                          margin: 'auto',
+                          display: 'block',
+                        }}
+                        onClick={() => handleDelete(item.id)}
+                      />
+                    )}
                   </Box>
                 </div>
               </div>

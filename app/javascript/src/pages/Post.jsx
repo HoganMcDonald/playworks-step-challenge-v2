@@ -39,10 +39,11 @@ const Post = () => {
   return (
     <main className="Post">
       <Nav />
-      <h2>Share Your Progress With Your Team</h2>
+      <h2>Share your progress with your team</h2>
+      <p>Earn bonus steps every day!</p>
       <form onSubmit={handleSubmit}>
         <label>
-          Image
+          Attach an Image:
           <input
             className="file-input"
             name="image"

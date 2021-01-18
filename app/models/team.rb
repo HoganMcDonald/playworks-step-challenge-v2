@@ -4,6 +4,7 @@ class Team < ApplicationRecord
   has_many :teams_users
   has_many :users, through: :teams_users
   has_many :steps, through: :teams_users
+  has_many :posts, through: :teams_users
 
   has_one_attached :avatar
 

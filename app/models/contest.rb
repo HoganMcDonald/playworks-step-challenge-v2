@@ -39,6 +39,7 @@ class Contest < ApplicationRecord
         id: post.id,
         teamId: post.teams_user.team_id,
         userId: post.teams_user.user_id,
+        avatar: post.teams_user.user.avatar_url,
         name: post.teams_user.user.name,
         image: post.image_url,
         text: post.text,
