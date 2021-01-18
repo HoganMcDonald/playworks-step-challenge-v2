@@ -34,7 +34,7 @@
 <!-- - display scheduled challenges - 30mins -->
 <!-- - fix avatars - 10mins -->
 <!-- - team upload new image - 30 mins -->
-- 2000 steps for uploading a post (once per day) - 15mins
+<!-- - 2000 steps for uploading a post (once per day) - 15mins -->
 <!-- - server utc issue on daily challenges -->
 
 

@@ -17,8 +17,8 @@ class Team < ApplicationRecord
   end
 
   def total_steps
-    steps.sum do |step|
-      step.count
+    teams_users.sum do |tu|
+      tu.total_steps
     end
   end
 
