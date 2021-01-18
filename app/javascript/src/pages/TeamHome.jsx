@@ -17,7 +17,7 @@ const TeamHome = () => {
         image={team.avatar}
         type="team"
         editable={
-          currentUser.role === 'admin' || currentUser.id == team.captainId
+          currentUser.role === 'admin' || currentUser.id == team.captain.id
         }
         containerSize={{ maxHeight: '30vh', maxWidth: '120ch' }}
       />

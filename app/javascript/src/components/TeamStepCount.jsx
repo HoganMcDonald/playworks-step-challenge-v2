@@ -3,10 +3,7 @@ import React from 'react'
 import { useStore } from '../store'
 
 const TeamStepCount = () => {
-  const { currentUser, team, leaderboard } = useStore()
-
-  // TODO: add captain role and firure this out
-  const handleClick = React.useCallback((userId) => {}, [])
+  const { team, leaderboard } = useStore()
 
   const totalSteps = React.useMemo(
     () => team.leaderboard.reduce((total, user) => total + user.sum, 0),
@@ -32,7 +29,6 @@ const TeamStepCount = () => {
               <th>Rank</th>
               <th>Name</th>
               <th>Steps</th>
-              {currentUser.captain && <th>Edit</th>}
             </tr>
           </thead>
           <tbody>
@@ -42,13 +38,6 @@ const TeamStepCount = () => {
                   <td>{i + 1}</td>
                   <td>{user.name}</td>
                   <td>{user.sum}</td>
-                  {currentUser.captain && (
-                    <th>
-                      <button onClick={() => handleClick(user.id)}>
-                        Edit Logs
-                      </button>
-                    </th>
-                  )}
                 </tr>
               ))}
           </tbody>

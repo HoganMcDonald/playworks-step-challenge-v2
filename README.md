@@ -39,6 +39,7 @@
 
 
 future
+- what is happening to the avatar when a team is created???
 - nav menu items click on text
 - wonky delete stuff 404
 - user profile page - 1hr
@@ -47,4 +48,3 @@ future
 - admin can create new contests
 - download csv of participants in a contest
 - optimize queries
-- figure out time zone issue with posts
