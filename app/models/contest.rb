@@ -72,6 +72,14 @@ class Contest < ApplicationRecord
     end.slice(0, 10)
   end
 
+  def serialized
+    attributes.merge({
+      topSteppers: top_steppers,
+      dailyChallenge: daily_challenge,
+      scheduledChallenges: scheduled_challenges
+    })
+  end
+
   private
 
   def dates

@@ -413,6 +413,30 @@ export const useStore = () => {
     }
   }, [])
 
+  const [contestLoading, setContestLoading] = React.useState(false)
+  const [contestError, setContestError] = React.useState('')
+  const getContest = React.useCallback(
+    async (contestId) => {
+      if (contestLoading) return null
+      setContestLoading(true)
+      setContestError('')
+      try {
+        const [response, error] = await get(`/contests/${contestId}.json`)
+        if (error) {
+          setContestError('Unable to load contest.')
+          setContestLoading(false)
+          return null
+        }
+        loadContest(response)
+        setContestLoading(false)
+      } catch (error) {
+        setContestError('Unable to load contest.')
+        setContestLoading(false)
+      }
+    },
+    [loadContest],
+  )
+
   const [contestsLoading, setContestsLoading] = React.useState(false)
   const [contestsError, setContestsError] = React.useState('')
   const getContests = React.useCallback(async () => {
@@ -697,6 +721,9 @@ export const useStore = () => {
     contestsLoading,
     contestsError,
     getContests,
+    contestLoading,
+    contestError,
+    getContest,
     contests,
     createTeam,
     createTeamError,

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :teams_users
   has_many :teams, through: :teams_users
+  has_many :contests, through: :teams
   has_many :steps, through: :teams_users
 
   enum role: { standard: 0, admin: 2 }
@@ -34,6 +35,7 @@ class User < ApplicationRecord
       avatar: avatar_url,
       role: role,
       currentTeamId: current_team.id,
+      currentContestId: current_contest.id,
       steps: steps.all.map do |step|
           {
             id: step.id,

@@ -62,8 +62,6 @@ export default function Router({ data }) {
 
   React.useEffect(async () => {
     loadUser(data.user)
-    // loadTeam(data.team)
-    loadContest(data.contest)
     loadLeaderboard(data.leaderboard)
     loadPosts(data.posts)
     loadContent(data.rules, data.faq)

@@ -41,6 +41,8 @@
 future
 - make resources restful (posts, steps, team, contest) - 2hrs - replace location href sets
 - set session to 1 year
+- fix current_contest in user
+- apple icon
 - validate email with devise
 - make routes more restful
 - break up the reducers
