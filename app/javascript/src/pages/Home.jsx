@@ -12,7 +12,7 @@ const Home = () => {
   const { team, contest } = useStore()
 
   return (
-    <Layout className="Home" resources={['team', 'contest']}>
+    <Layout className="Home" resources={['team', 'contest', 'posts']}>
       {!team || !contest ? (
         <Redirect to={'/team'} />
       ) : (

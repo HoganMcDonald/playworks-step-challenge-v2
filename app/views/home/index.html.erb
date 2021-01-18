@@ -1,12 +1,5 @@
 <%= content_tag 'div', nil, id: 'current-user', data: {
   user: current_user&.serialized,
-  contest: current_user&.current_team&.contest&.attributes&.merge({
-    topSteppers: current_user&.current_team&.contest&.top_steppers,
-    dailyChallenge: current_user&.current_team&.contest&.daily_challenge,
-    scheduledChallenges: current_user&.current_team&.contest&.scheduled_challenges
-  }),
-  leaderboard: current_user&.current_team&.contest&.leaderboard,
   rules: current_user&.current_team&.contest&.rules&.text,
   faq: current_user&.current_team&.contest&.faq&.text,
-  posts: current_user&.current_team&.contest&.all_posts
 }.to_json %>

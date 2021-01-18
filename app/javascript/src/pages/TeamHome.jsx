@@ -12,7 +12,7 @@ const TeamHome = () => {
   const { team, currentUser } = useStore()
 
   return (
-    <Layout className="TeamHome" resources={['team']}>
+    <Layout className="TeamHome" resources={['team', 'posts', 'contest']}>
       <AvatarUploader
         image={team.avatar}
         type="team"

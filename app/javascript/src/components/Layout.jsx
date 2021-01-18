@@ -10,6 +10,8 @@ const Layout = ({ children, className, resources }) => {
     teamLoading,
     getContest,
     contestLoading,
+    getPosts,
+    posttsLoading,
     currentUser,
   } = useStore()
 
@@ -29,9 +31,17 @@ const Layout = ({ children, className, resources }) => {
     setLocalLoading(false)
   }, [])
 
+  // Contest
+  React.useEffect(async () => {
+    if (resources.includes('posts')) {
+      await getPosts(currentUser.currentContestId)
+    }
+    setLocalLoading(false)
+  }, [])
+
   const loading = React.useMemo(
-    () => localLoading || teamLoading || contestLoading,
-    [localLoading, teamLoading, contestLoading],
+    () => localLoading || teamLoading || contestLoading || posttsLoading,
+    [localLoading, teamLoading, contestLoading, posttsLoading],
   )
 
   return (

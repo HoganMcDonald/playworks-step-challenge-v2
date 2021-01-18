@@ -76,7 +76,8 @@ class Contest < ApplicationRecord
     attributes.merge({
       topSteppers: top_steppers,
       dailyChallenge: daily_challenge,
-      scheduledChallenges: scheduled_challenges
+      scheduledChallenges: scheduled_challenges,
+      leaderboard: leaderboard
     })
   end
 

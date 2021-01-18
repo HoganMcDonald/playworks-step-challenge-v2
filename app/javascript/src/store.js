@@ -427,7 +427,9 @@ export const useStore = () => {
           setContestLoading(false)
           return null
         }
-        loadContest(response)
+        const { leaderboard, ...rest } = response
+        loadContest(rest)
+        loadLeaderboard(leaderboard)
         setContestLoading(false)
       } catch (error) {
         setContestError('Unable to load contest.')
@@ -657,6 +659,27 @@ export const useStore = () => {
     }
   }, [])
 
+  const [postsLoading, setPostsLoading] = React.useState(false)
+  const [postsError, setPostsError] = React.useState('')
+  const getPosts = React.useCallback(async (contestId) => {
+    if (postsLoading) return null
+    setPostsLoading(true)
+    setPostsError('')
+    try {
+      const [response, error] = await get(`/posts/${contestId}.json`)
+      if (error) {
+        setPostsError('Unable to load posts.')
+        setPostsLoading(false)
+        return null
+      }
+      loadPosts(response)
+      setPostsLoading(false)
+    } catch (error) {
+      setPostsError('Unable to load posts.')
+      setPostsLoading(false)
+    }
+  }, [])
+
   const [deleteChallengeLoading, setDeleteChallengeLoading] = React.useState(
     false,
   )
@@ -737,6 +760,9 @@ export const useStore = () => {
     deleteStepsError,
     deletePosts,
     deletePostsError,
+    getPosts,
+    postsError,
+    postsLoading,
     deleteChallenge,
     deleteChallengeError,
   }

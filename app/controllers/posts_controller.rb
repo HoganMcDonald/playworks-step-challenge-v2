@@ -13,4 +13,10 @@ class PostsController < ApplicationController
     step = Post.find params[:id]
     step.destroy
   end
+
+  def show
+    posts = Contest.find(params[:id]).all_posts
+
+    render json: posts
+  end
 end

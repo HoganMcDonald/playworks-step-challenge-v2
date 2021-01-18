@@ -63,7 +63,6 @@ export default function Router({ data }) {
   React.useEffect(async () => {
     loadUser(data.user)
     loadLeaderboard(data.leaderboard)
-    loadPosts(data.posts)
     loadContent(data.rules, data.faq)
     // this is a total hack. sue me.
     setLoading(false)
