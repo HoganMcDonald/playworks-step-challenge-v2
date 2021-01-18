@@ -19,7 +19,7 @@ class Contest < ApplicationRecord
   end
 
   def daily_challenge
-    challenge = challenges.where(date: Date.today).last
+    challenge = challenges.where(date: Time.now.in_time_zone('Central Time (US & Canada)').to_date).last
     challenge&.attributes&.merge({
       image: challenge.image_url
     })
@@ -34,7 +34,7 @@ class Contest < ApplicationRecord
   end
 
   def all_posts
-    posts.includes(:image_attachment, :image_blob, teams_user: :user).where(created_at: (Time.zone.now.beginning_of_day - 6.hours)..(Time.zone.now.end_of_day - 6.hours)).map do |post|
+    posts.includes(:image_attachment, :image_blob, teams_user: :user).where(created_at: (Time.now.in_time_zone('Central Time (US & Canada)').beginning_of_day)..(Time.now.in_time_zone('Central Time (US & Canada)').end_of_day)).map do |post|
       {
         id: post.id,
         teamId: post.teams_user.team_id,
