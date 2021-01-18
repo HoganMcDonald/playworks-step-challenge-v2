@@ -33,6 +33,7 @@ class User < ApplicationRecord
       name: name,
       avatar: avatar_url,
       role: role,
+      currentTeamId: current_team.id,
       steps: steps.all.map do |step|
           {
             id: step.id,

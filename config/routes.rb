@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   put '/upload-team-avatar', to: 'avatar#upload_team_avatar'
 
   resources :contests, only: [:index, :show, :create], defaults: { format: :json }
-  resources :teams, only: [:index, :update, :create], defaults: { format: :json }
+  resources :teams, only: [:show, :index, :update, :create], defaults: { format: :json }
   resources :steps, only: [:create, :destroy], defaults: { format: :json }
   resources :posts, only: [:create, :destroy]
   resources :challenges, only: [:create, :destroy]

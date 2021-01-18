@@ -39,8 +39,12 @@
 
 
 future
+- make resources restful (posts, steps, team, contest) - 2hrs - replace location href sets
+- set session to 1 year
+- validate email with devise
+- make routes more restful
+- break up the reducers
 - what is happening to the avatar when a team is created???
-- nav menu items click on text
 - wonky delete stuff 404
 - user profile page - 1hr
 - Admins can see team pages

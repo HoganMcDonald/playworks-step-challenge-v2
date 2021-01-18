@@ -30,7 +30,7 @@ class Team < ApplicationRecord
       contestId: contest_id,
       avatar: avatar_url,
       captain: captain,
-      leaderboard: teams_users.includes(:user, :steps).map do |tu|
+      leaderboard: teams_users.includes(:steps, :posts, user: { avatar_attachment: :blob }).map do |tu|
           {
             id: tu.user_id,
             name: tu.user.name,

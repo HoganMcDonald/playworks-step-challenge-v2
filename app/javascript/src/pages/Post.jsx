@@ -5,6 +5,7 @@ import Nav from '../components/Nav'
 import DailyChallenge from '../components/DailyChallenge'
 import '../styles/post.css'
 import { useStore } from '../store'
+import Layout from '../components/Layout'
 
 const Post = () => {
   const { team } = useStore()
@@ -37,8 +38,7 @@ const Post = () => {
   )
 
   return (
-    <main className="Post">
-      <Nav />
+    <Layout className="Post" resources={['team']}>
       <h2>Share your progress with your team</h2>
       <p>Earn bonus steps every day!</p>
       <form onSubmit={handleSubmit}>
@@ -78,7 +78,7 @@ const Post = () => {
         </Button>
       </form>
       <DailyChallenge />
-    </main>
+    </Layout>
   )
 }
 
