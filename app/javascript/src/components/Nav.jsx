@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Button, Menu, MenuItem, Avatar } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 
@@ -10,12 +10,14 @@ import '../styles/nav.css'
 const Nav = () => {
   const { currentUser, logout } = useStore()
   const [anchorEl, setAnchorEl] = React.useState(null)
+  const history = useHistory()
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
   }
 
-  const handleClose = () => {
+  const handleClose = (path) => {
+    if (path) history.push(path)
     setAnchorEl(null)
   }
 
@@ -44,33 +46,33 @@ const Nav = () => {
             keepMounted
             open={Boolean(anchorEl)}
             onClose={handleClose}>
-            <MenuItem onClick={handleClose}>
+            <MenuItem onClick={() => handleClose('/')}>
               <Link className="nav-link" to="/">
                 Home
               </Link>
             </MenuItem>
-            <MenuItem onClick={handleClose}>
+            <MenuItem onClick={() => handleClose('/post')}>
               <Link className="nav-link" to="/post">
                 Daily Challenge
               </Link>
             </MenuItem>
-            <MenuItem onClick={handleClose}>
+            <MenuItem onClick={() => handleClose('/steps')}>
               <Link className="nav-link" to="/steps">
                 Add Steps
               </Link>
             </MenuItem>
-            <MenuItem onClick={handleClose}>
+            <MenuItem onClick={() => handleClose('/team/home')}>
               <Link className="nav-link" to="/team/home">
                 My Team
               </Link>
             </MenuItem>
-            <MenuItem onClick={handleClose}>
+            <MenuItem onClick={() => handleClose('/rules')}>
               <Link className="nav-link" to="/rules">
                 Rules
               </Link>
             </MenuItem>
             {currentUser.role === 'admin' && (
-              <MenuItem onClick={handleClose}>
+              <MenuItem onClick={() => handleClose('/admin')}>
                 <Link className="nav-link" to="/admin">
                   Admin
                 </Link>
