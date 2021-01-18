@@ -56,6 +56,8 @@ class Contest < ApplicationRecord
         name: team.name,
         sum: team.total_steps || 0
       }
+    end.sort_by do |teams|
+      -teams[:sum]
     end
   end
 
