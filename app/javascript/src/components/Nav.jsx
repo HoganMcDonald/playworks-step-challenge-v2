@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Menu, MenuItem } from '@material-ui/core'
+import { Button, Menu, MenuItem, Avatar } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 
 import logo from '../images/wide-logo.png'

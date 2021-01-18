@@ -10,13 +10,8 @@
 }
 
 .topSteppersAvatar {
-  object-fit: cover;
-  border-radius: 50%;
-  height: 70px;
-  width: 70px;
-  display: inline-block;
-  position: relative;
-  background-color: #7b7e81;
+  margin: 1rem auto;
+  height: 4rem;
 }
 
 .react-multi-carousel-track,

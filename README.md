@@ -33,8 +33,13 @@
 <!-- - Admins/captains see user steps pages and can delete - 40mins -->
 <!-- - display scheduled challenges - 30mins -->
 - team upload new image - 30 mins
+- fix avatars - 10mins
+- 2000 steps for uploading a post (once per day) - 15mins
+
 
 future
+- nav menu items click on text
+- wonky delete stuff 404
 - user profile page - 1hr
 - Admins can see team pages
 - Admin can switch active contest / show in bottom of screen - 1hr
