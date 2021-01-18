@@ -39,7 +39,7 @@ const StepTable = ({ steps }) => {
               <td style={{ width: '1%' }}>
                 {canDelete(step) && (
                   <DeleteForeverIcon
-                    style={{ cursor: 'pointer' }}
+                    style={{ cursor: 'pointer', fill: '#418cc7' }}
                     onClick={() => handleDelete(step.id)}
                   />
                 )}

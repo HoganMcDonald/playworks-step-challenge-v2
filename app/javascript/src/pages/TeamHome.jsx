@@ -19,7 +19,7 @@ const TeamHome = () => {
         editable={
           currentUser.role === 'admin' || currentUser.id == team.captainId
         }
-        containerSize={{ maxHeight: '20vh', maxWidth: '120ch' }}
+        containerSize={{ maxHeight: '30vh', maxWidth: '120ch' }}
       />
       <h2>{team.name}</h2>
       <TeamStepCount />

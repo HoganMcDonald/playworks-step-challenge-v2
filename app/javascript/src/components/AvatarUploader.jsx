@@ -89,6 +89,7 @@ const AvatarUploader = ({ image, type, containerSize, editable }) => {
             right: '-10px',
             bottom: '-2px',
             cursor: 'pointer',
+            fill: '#418cc7',
           }}
           onClick={() => setOpen(true)}
         />

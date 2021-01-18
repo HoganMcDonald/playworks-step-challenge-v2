@@ -167,7 +167,7 @@ const Admin = () => {
             <tr key={index}>
               <td style={{ width: '1%' }}>
                 <DeleteForeverIcon
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: 'pointer', fill: '#418cc7' }}
                   onClick={() => handleDelete(challenge.id)}
                 />
               </td>

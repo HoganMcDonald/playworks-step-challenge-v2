@@ -41,3 +41,4 @@ future
 - admin can create new contests
 - download csv of participants in a contest
 - optimize queries
+- figure out time zone issue with posts

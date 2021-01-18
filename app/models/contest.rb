@@ -34,7 +34,7 @@ class Contest < ApplicationRecord
   end
 
   def all_posts
-    posts.includes(teams_user: :user).where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).map do |post|
+    posts.includes(teams_user: :user).where(created_at: (Time.zone.now.beginning_of_day - 6.hours)..(Time.zone.now.end_of_day - 6.hours)).map do |post|
       {
         id: post.id,
         teamId: post.teams_user.team_id,
