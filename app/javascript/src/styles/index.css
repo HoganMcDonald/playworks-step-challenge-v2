@@ -115,4 +115,6 @@ input {
 
 .MuiAvatar-img {
   height: auto !important;
+  min-width: 100%;
+  min-height: 100%;
 }
