@@ -48,7 +48,6 @@ const Challenges = ({ teamOnly }) => {
                           position: 'absolute',
                           left: '0',
                           top: '0',
-                          fill: '#418cc7',
                         }}
                         onClick={() => handleDelete(item.id)}
                       />
