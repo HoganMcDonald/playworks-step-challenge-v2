@@ -5,8 +5,8 @@ import moment from 'moment'
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
 import 'react-quill/dist/quill.snow.css'
 
-import Nav from '../components/Nav'
 import DailyChallenge from '../components/DailyChallenge'
+import Layout from '../components/Layout'
 import { useStore } from '../store'
 import '../styles/admin.css'
 
@@ -64,8 +64,7 @@ const Admin = () => {
     [deleteChallenge],
   )
   return (
-    <main className="Admin">
-      <Nav />
+    <Layout className="Admin" resources={['contest']}>
       <h2>Update Contest Rules</h2>
       <h3>Rules</h3>
       <ReactQuill theme="snow" value={editRules} onChange={setRules} />
@@ -163,31 +162,32 @@ const Admin = () => {
           </tr>
         </thead>
         <tbody>
-          {contest.scheduledChallenges.map((challenge, index) => (
-            <tr key={index}>
-              <td style={{ width: '1%' }}>
-                <DeleteForeverIcon
-                  style={{ cursor: 'pointer' }}
-                  onClick={() => handleDelete(challenge.id)}
-                />
-              </td>
-              <td>{moment(challenge.date).format('MM/DD/Y')}</td>
-              <td>{challenge.description}</td>
-              <td>
-                <img
-                  src={challenge.image}
-                  style={{
-                    height: 'auto',
-                    maxWidth: '4rem',
-                    maxHeight: '4rem',
-                  }}
-                />
-              </td>
-            </tr>
-          ))}
+          {contest.scheduledChallenges &&
+            contest.scheduledChallenges.map((challenge, index) => (
+              <tr key={index}>
+                <td style={{ width: '1%' }}>
+                  <DeleteForeverIcon
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => handleDelete(challenge.id)}
+                  />
+                </td>
+                <td>{moment(challenge.date).format('MM/DD/Y')}</td>
+                <td>{challenge.description}</td>
+                <td>
+                  <img
+                    src={challenge.image}
+                    style={{
+                      height: 'auto',
+                      maxWidth: '4rem',
+                      maxHeight: '4rem',
+                    }}
+                  />
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
-    </main>
+    </Layout>
   )
 }
 
