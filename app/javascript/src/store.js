@@ -549,63 +549,69 @@ export const useStore = () => {
 
   const [createStepsLoading, setCreateStepsLoading] = React.useState(false)
   const [createStepsError, setCreateStepsError] = React.useState('')
-  const createSteps = React.useCallback(async (count, date) => {
-    if (createStepsLoading) {
-      return null
-    }
-    setCreateStepsLoading(true)
-    setCreateStepsError('')
-    try {
-      const [response, error] = await post(`/steps.json`, {
-        team_id: team.id,
-        count,
-        date,
-      })
-      setCreateStepsLoading(false)
-      if (error) {
-        setCreateStepsError(
-          error.message || 'Unable to submit steps at this time.',
-        )
+  const createSteps = React.useCallback(
+    async (count, date) => {
+      if (createStepsLoading) {
         return null
-      } else {
-        window.location.href = '/steps'
       }
-    } catch (error) {
-      setCreateStepsLoading(false)
-      setCreateStepsError(error.message)
-      return null
-    }
-  }, [])
+      setCreateStepsLoading(true)
+      setCreateStepsError('')
+      try {
+        const [response, error] = await post(`/steps.json`, {
+          team_id: team.id,
+          count,
+          date,
+        })
+        setCreateStepsLoading(false)
+        if (error) {
+          setCreateStepsError(
+            error.message || 'Unable to submit steps at this time.',
+          )
+          return null
+        } else {
+          window.location.href = '/steps'
+        }
+      } catch (error) {
+        setCreateStepsLoading(false)
+        setCreateStepsError(error.message)
+        return null
+      }
+    },
+    [team],
+  )
 
   const [createContentLoading, setCreateContentLoading] = React.useState(false)
   const [createContentError, setCreateContentError] = React.useState('')
-  const createContent = React.useCallback(async (text, contentType) => {
-    if (createContentLoading) {
-      return null
-    }
-    setCreateContentLoading(true)
-    setCreateContentError('')
-    try {
-      const [response, error] = await post(`/content.json`, {
-        contest_id: contest.id,
-        text,
-        content_type: contentType,
-      })
-      setCreateContentLoading(false)
-      if (error) {
-        setCreateContentError(
-          error.message || `Unable to update ${contentType}.`,
-        )
+  const createContent = React.useCallback(
+    async (text, contentType) => {
+      if (createContentLoading) {
         return null
-      } else {
-        window.location.reload()
       }
-    } catch (error) {
-      setCreateContentLoading(false)
-      setCreateContentError(error.message)
-      return null
-    }
-  }, [])
+      setCreateContentLoading(true)
+      setCreateContentError('')
+      try {
+        const [response, error] = await post(`/content.json`, {
+          contest_id: contest.id,
+          text,
+          content_type: contentType,
+        })
+        setCreateContentLoading(false)
+        if (error) {
+          setCreateContentError(
+            error.message || `Unable to update ${contentType}.`,
+          )
+          return null
+        } else {
+          window.location.reload()
+        }
+      } catch (error) {
+        setCreateContentLoading(false)
+        setCreateContentError(error.message)
+        return null
+      }
+    },
+    [contest],
+  )
 
   const [deleteStepsLoading, setDeleteStepsLoading] = React.useState(false)
   const [deleteStepsError, setDeleteStepsError] = React.useState('')
