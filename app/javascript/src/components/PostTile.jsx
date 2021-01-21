@@ -63,18 +63,7 @@ const PostTile = ({ item }) => {
         )}
       </div>
       {imageLoaded ? (
-        <img
-          className="post-image"
-          src={item.image}
-          alt=""
-          style={{
-            height: 'auto',
-            maxHeight: '16rem',
-          }}
-          height="300"
-          width="400"
-          loading="lazy"
-        />
+        <img className="post-image" src={item.image} alt="" loading="lazy" />
       ) : (
         <div className="lazy-placeholder" />
       )}
