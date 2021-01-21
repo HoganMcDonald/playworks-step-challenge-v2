@@ -1,17 +1,54 @@
-.challengeOfTheDay {
-  text-align: center;
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-.challengeOfTheDayHeadline {
-  margin-top: 2rem;
-  text-align: center;
-  margin-bottom: 0.25rem;
-}
-
-.challengeOfTheDaySubtitleAndDescription {
-  display: inline-block;
-  text-align: center;
+.card-container {
   max-width: 400px;
   width: calc(100vw - 1rem);
   margin-bottom: 10px;
+}
+
+.post-top-bar {
+  display: flex;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.3);
+  padding: 0.5rem;
+  align-items: center;
+}
+
+.post-top-bar .delete-icon {
+  margin-left: auto;
+}
+
+.lazy-placeholder {
+  max-width: 400px;
+  width: calc(100vw - 1rem);
+  height: 300px;
+  background: linear-gradient(-45deg, #ffffff, #6dd5fa, #2980b9);
+  background-size: 300% 300%;
+  animation: gradient 8s ease infinite;
+}
+
+.post-image {
+  margin: 0;
+  line-height: 0;
+}
+
+.post-description {
+  margin: 0.5rem;
+  margin-bottom: 0;
+}
+
+.small-text {
+  line-height: 1;
+  font-size: 0.75rem;
+  margin: 0.5rem;
+  color: #757575;
 }

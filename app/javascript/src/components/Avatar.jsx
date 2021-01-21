@@ -10,6 +10,7 @@ const Avatar = ({ src, size = '3rem', styles }) => {
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         borderRadius: '999px',
+        backgroundColor: '#054f95',
         ...styles,
       }}
     />

@@ -1,7 +1,6 @@
 import React from 'react'
 import { TextField, Button } from '@material-ui/core'
 
-import Nav from '../components/Nav'
 import DailyChallenge from '../components/DailyChallenge'
 import '../styles/post.css'
 import { useStore } from '../store'
