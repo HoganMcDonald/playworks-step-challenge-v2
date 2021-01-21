@@ -45,7 +45,8 @@ class Team < ApplicationRecord
             userId: step.user.id,
             sum: step.count,
             captainId: captain_id,
-            createdAt: created_at
+            createdAt: created_at,
+            date: step.date
           }
         end
     }
