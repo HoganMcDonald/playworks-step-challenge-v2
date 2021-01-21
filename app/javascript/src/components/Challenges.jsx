@@ -1,9 +1,10 @@
 import React from 'react'
-import { Box, Card, Grid, Avatar } from '@material-ui/core'
+import { Box, Card, Grid } from '@material-ui/core'
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
 
 import { useStore } from '../store'
 import DailyChallenge from './DailyChallenge'
+import Avatar from './Avatar'
 import '../styles/challenges.css'
 
 const Challenges = ({ teamOnly }) => {
@@ -27,7 +28,6 @@ const Challenges = ({ teamOnly }) => {
       post.captainId == currentUser.id
   }, [currentUser])
 
-  const challenges = []
   return (
     <div style={{ marginBottom: '3rem' }}>
       <DailyChallenge />
@@ -42,7 +42,7 @@ const Challenges = ({ teamOnly }) => {
                   <Box display="block">
                     <Avatar
                       src={item.avatar}
-                      style={{
+                      styles={{
                         position: 'absolute',
                         top: '0.5rem',
                         left: '0.5rem',

@@ -1,19 +1,11 @@
 import React from 'react'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
-import { Paper, Avatar } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { Paper } from '@material-ui/core'
 
+import Avatar from './Avatar'
 import { useStore } from '../store'
 import '../styles/topsteppers.css'
-
-const useStyles = makeStyles((theme) => ({
-  large: {
-    width: theme.spacing(7),
-    height: theme.spacing(7),
-    margin: '1rem auto',
-  },
-}))
 
 const responsive = {
   superLargeDesktop: {
@@ -40,7 +32,6 @@ const responsive = {
 
 const TopSteppers = () => {
   const { contest } = useStore()
-  const classes = useStyles()
 
   return (
     <div style={{ width: '100%', maxWidth: '80ch' }}>
@@ -57,11 +48,7 @@ const TopSteppers = () => {
             autoPlay={false}>
             {contest.topSteppers.map((user, i) => (
               <Paper key={i} className="stepperPaper">
-                <Avatar
-                  className={classes.large}
-                  alt={user.name}
-                  src={user.avatar}
-                />
+                <Avatar src={user.avatar} styles={{ margin: '1rem auto' }} />
                 <p>{user.username}</p>
                 <p>{user.sum} steps</p>
                 <p>{user.teamName}</p>
