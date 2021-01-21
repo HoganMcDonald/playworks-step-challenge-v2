@@ -47,4 +47,8 @@ class User < ApplicationRecord
         end
     }
   end
+
+  def remember_me
+    true
+  end
 end
