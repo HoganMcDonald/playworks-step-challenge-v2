@@ -61,7 +61,6 @@ const slice = createSlice({
         ...state.posts,
         ...action.payload.filter((post) => !ids.has(post.id)),
       ]
-      console.log(ids, posts, action.payload)
       return {
         ...state,
         posts,

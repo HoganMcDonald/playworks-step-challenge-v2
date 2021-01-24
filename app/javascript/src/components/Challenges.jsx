@@ -6,7 +6,7 @@ import '../styles/challenges.css'
 import PostTile from './PostTile'
 import PostGrid from './PostGrid'
 
-const Challenges = ({ teamOnly }) => {
+const Challenges = ({ teamOnly, contestId }) => {
   const [touch, setTouch] = React.useState(Date.now())
 
   const {
@@ -33,7 +33,10 @@ const Challenges = ({ teamOnly }) => {
         initialLoad={false}
         hasMore={postCurrentPage < postLastPage}
         loadMore={() =>
-          getPosts(currentUser.currentContestId, postCurrentPage + 1)
+          getPosts(
+            contestId || currentUser.currentContestId,
+            postCurrentPage + 1,
+          )
         }
         touch={touch}>
         {items.map((item, i) => (
