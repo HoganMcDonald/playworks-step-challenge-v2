@@ -37,6 +37,12 @@ const Admin = React.lazy(() =>
     /* webpackPrefetch: true */ './pages/Admin'
   ),
 )
+const Archive = React.lazy(() =>
+  import(
+    /* webpackChunkName: "archive" */
+    /* webpackPrefetch: true */ './pages/Archive'
+  ),
+)
 import { useStore } from './store'
 
 const AuthenticatedRoute = ({ path, user, children }) => {
@@ -51,7 +57,7 @@ const AuthenticatedRoute = ({ path, user, children }) => {
 
 export default function Router({ data }) {
   const [loading, setLoading] = React.useState(true)
-  const { loadUser, loadLeaderboard, loadContent } = useStore()
+  const { loadUser, loadContent } = useStore()
 
   React.useEffect(async () => {
     loadUser(data.user)
@@ -100,6 +106,11 @@ export default function Router({ data }) {
         <AuthenticatedRoute path="/rules" user={data.user}>
           <React.Suspense fallback={<div>Loading...</div>}>
             <Rules />
+          </React.Suspense>
+        </AuthenticatedRoute>
+        <AuthenticatedRoute path="/archive/:contestId" user={data.user}>
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <Archive />
           </React.Suspense>
         </AuthenticatedRoute>
         <AuthenticatedRoute path="/admin" user={data.user}>

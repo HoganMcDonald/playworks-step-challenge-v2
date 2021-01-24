@@ -49,9 +49,7 @@ const Team = () => {
     joinTeam(contestId, teamId)
   })
 
-  return team ? (
-    <Redirect to="/" />
-  ) : (
+  return Object.keys(team).length === 0 && team.constructor === Object ? (
     <main className="Team">
       <img className="logo" src={logo} alt="" />
       {!selected && (
@@ -179,6 +177,8 @@ const Team = () => {
       )}
       <Button onClick={logout}>Logout</Button>
     </main>
+  ) : (
+    <Redirect to="/" />
   )
 }
 

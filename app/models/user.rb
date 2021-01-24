@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :teams, through: :teams_users
   has_many :contests, through: :teams
   has_many :steps, through: :teams_users
+  has_many :contests, through: :teams
 
   enum role: { standard: 0, admin: 2 }
 
@@ -14,7 +15,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   def current_contest
-    Contest.last
+    contests.active.last
   end
 
   def current_team
@@ -34,8 +35,9 @@ class User < ApplicationRecord
       name: name,
       avatar: avatar_url,
       role: role,
-      currentTeamId: current_team.id,
-      currentContestId: current_contest.id,
+      currentTeamId: current_team&.id,
+      currentContestId: current_contest&.id,
+      completedContests: contests.not_active.pluck(:id),
       steps: steps.all.map do |step|
           {
             id: step.id,

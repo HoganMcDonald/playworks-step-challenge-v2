@@ -9,6 +9,7 @@ class Contest < ApplicationRecord
   validate :dates
 
   scope :active, -> { where('end_date > ?', DateTime.now) }
+  scope :not_active, -> { where.not(id: active) }
 
   def rules
     content.find_by content_type: :rules

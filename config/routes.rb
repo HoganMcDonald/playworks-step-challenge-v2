@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/post', to: 'home#index'
   get '/rules', to: 'home#index'
   get '/admin', to: 'home#index'
+  get '/archive/:contest_id', to: 'home#index'
 
   put '/upload-user-avatar', to: 'avatar#upload_user_avatar'
   put '/upload-team-avatar', to: 'avatar#upload_team_avatar'
