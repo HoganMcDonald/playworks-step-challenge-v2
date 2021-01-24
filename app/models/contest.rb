@@ -33,22 +33,6 @@ class Contest < ApplicationRecord
     end
   end
 
-  def all_posts
-    posts.includes(:image_attachment, :image_blob, teams_user: :user).where(created_at: (Time.now.in_time_zone('Central Time (US & Canada)').beginning_of_day)..(Time.now.in_time_zone('Central Time (US & Canada)').end_of_day)).map do |post|
-      {
-        id: post.id,
-        teamId: post.teams_user.team_id,
-        userId: post.teams_user.user_id,
-        avatar: post.teams_user.user.avatar_url,
-        name: post.teams_user.user.name,
-        image: post.image_url,
-        text: post.text,
-        date: post.created_at,
-        captainId: post.team.captain_id
-      }
-    end
-  end
-
   def leaderboard
     teams.includes(:steps).map do |team|
       {
