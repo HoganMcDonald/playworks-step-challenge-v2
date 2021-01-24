@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'image_processing', '~> 1.2'
 gem 'sendgrid-actionmailer'
 gem 'devise'
+gem 'kaminari'
 gem "aws-sdk-s3", require: false
 
 # Reduces boot times through caching; required in config/boot.rb
