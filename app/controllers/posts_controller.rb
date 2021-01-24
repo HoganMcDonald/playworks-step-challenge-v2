@@ -19,19 +19,7 @@ class PostsController < ApplicationController
     posts = contest.posts.includes(:image_attachment, :image_blob, teams_user: :user).page params[:page]
 
     response = {
-      posts: posts.map do |post|
-        {
-          id: post.id,
-          teamId: post.teams_user.team_id,
-          userId: post.teams_user.user_id,
-          avatar: post.teams_user.user.avatar_url,
-          name: post.teams_user.user.name,
-          image: post.image_url,
-          text: post.text,
-          date: post.created_at,
-          captainId: post.team.captain_id
-        }
-      end,
+      posts: posts.map(&:serialized),
       lastPage: posts.total_pages,
       page: posts.current_page
     }

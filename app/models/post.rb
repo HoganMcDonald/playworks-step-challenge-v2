@@ -9,4 +9,18 @@ class Post < ApplicationRecord
       Rails.application.routes.url_helpers.rails_blob_url(image, only_path: true) :
       nil
   end
+
+  def serialized
+    {
+      id: id,
+      teamId: teams_user.team_id,
+      userId: teams_user.user_id,
+      avatar: teams_user.user.avatar_url,
+      name: teams_user.user.name,
+      image: image_url,
+      text: text,
+      date: created_at,
+      captainId: team.captain_id
+    }
+  end
 end
