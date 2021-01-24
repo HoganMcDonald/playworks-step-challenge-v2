@@ -11,6 +11,8 @@ const initialState = {
   faq: '',
   rules: '',
   posts: [],
+  postPage: 0,
+  postLastPage: 9999999,
 }
 
 const slice = createSlice({
@@ -65,6 +67,14 @@ const slice = createSlice({
         ...state,
         rules,
         faq,
+      }
+    },
+    setPostPagination(state, action) {
+      const { page, lastPage } = action.payload
+      return {
+        ...state,
+        postPage: page,
+        postLastPage: lastPage,
       }
     },
   },
@@ -189,6 +199,8 @@ export const useStore = () => {
   const faq = useSelector((state) => state.faq)
   const steps = useSelector((state) => (state.user ? state.user.steps : []))
   const posts = useSelector((state) => state.posts || [])
+  const postCurrentPage = useSelector((state) => state.postPage)
+  const postLastPage = useSelector((state) => state.postLastPage)
 
   // actions
   const loadUser = React.useCallback(
@@ -236,6 +248,13 @@ export const useStore = () => {
   const loadPosts = React.useCallback(
     (posts) => {
       dispatch(slice.actions.setPosts(posts))
+    },
+    [dispatch],
+  )
+
+  const loadPostPagination = React.useCallback(
+    (page, lastPage) => {
+      dispatch(slice.actions.setPostPagination({ page, lastPage }))
     },
     [dispatch],
   )
@@ -667,18 +686,21 @@ export const useStore = () => {
 
   const [postsLoading, setPostsLoading] = React.useState(false)
   const [postsError, setPostsError] = React.useState('')
-  const getPosts = React.useCallback(async (contestId) => {
+  const getPosts = React.useCallback(async (contestId, page) => {
     if (postsLoading) return null
     setPostsLoading(true)
     setPostsError('')
     try {
-      const [response, error] = await get(`/posts/${contestId}.json`)
+      const [response, error] = await get(
+        `/posts/${contestId}.json?page=${page}`,
+      )
       if (error) {
         setPostsError('Unable to load posts.')
         setPostsLoading(false)
         return null
       }
-      loadPosts(response)
+      loadPosts(response.posts)
+      loadPostPagination(response.page, response.lastPage)
       setPostsLoading(false)
     } catch (error) {
       setPostsError('Unable to load posts.')
@@ -771,5 +793,7 @@ export const useStore = () => {
     postsLoading,
     deleteChallenge,
     deleteChallengeError,
+    postLastPage,
+    postCurrentPage,
   }
 }
