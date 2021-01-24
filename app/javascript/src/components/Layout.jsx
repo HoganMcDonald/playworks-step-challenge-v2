@@ -34,7 +34,7 @@ const Layout = ({ children, className, resources }) => {
   // Contest
   React.useEffect(async () => {
     if (resources.includes('posts')) {
-      await getPosts(currentUser.currentContestId)
+      await getPosts(currentUser.currentContestId, 1)
     }
     setLocalLoading(false)
   }, [])
