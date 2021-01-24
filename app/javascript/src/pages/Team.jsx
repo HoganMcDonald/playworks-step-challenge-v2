@@ -6,7 +6,7 @@ import logo from '../images/logo.png'
 import '../styles/team.css'
 import { Button, TextField, Select, MenuItem } from '@material-ui/core'
 import { useStore } from '../store'
-import { Redirect } from 'react-router-dom'
+import { Redirect, useHistory } from 'react-router-dom'
 
 const Team = () => {
   const {
@@ -20,7 +20,10 @@ const Team = () => {
     joinTeamError,
     joinTeam,
     logout,
+    currentUser,
   } = useStore()
+  const history = useHistory()
+
   const [selected, setSelected] = React.useState('')
   const [teamName, setTeamName] = React.useState('')
   const [companyName, setCompanyName] = React.useState('')
@@ -176,6 +179,17 @@ const Team = () => {
         </form>
       )}
       <Button onClick={logout}>Logout</Button>
+      <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+        <h4 style={{ padding: 0, marginBottom: '1rem' }}>Past Contests</h4>
+        {currentUser.completedContests.map((contest) => {
+          const [id, name] = contest
+          return (
+            <Button onClick={() => history.push(`/archive/${id}`)}>
+              {name}
+            </Button>
+          )
+        })}
+      </div>
     </main>
   ) : (
     <Redirect to="/" />

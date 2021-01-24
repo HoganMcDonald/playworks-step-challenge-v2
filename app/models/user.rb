@@ -37,7 +37,7 @@ class User < ApplicationRecord
       role: role,
       currentTeamId: current_team&.id,
       currentContestId: current_contest&.id,
-      completedContests: contests.not_active.pluck(:id),
+      completedContests: contests.not_active.pluck(:id, :name),
       steps: steps.all.map do |step|
           {
             id: step.id,
