@@ -56,9 +56,15 @@ const slice = createSlice({
       }
     },
     setPosts(state, action) {
+      const ids = new Set(state.posts.map((post) => post.id))
+      const posts = [
+        ...state.posts,
+        ...action.payload.filter((post) => !ids.has(post.id)),
+      ]
+      console.log(ids, posts, action.payload)
       return {
         ...state,
-        posts: action.payload,
+        posts,
       }
     },
     setContent(state, action) {
@@ -687,7 +693,7 @@ export const useStore = () => {
   const [postsLoading, setPostsLoading] = React.useState(false)
   const [postsError, setPostsError] = React.useState('')
   const getPosts = React.useCallback(async (contestId, page) => {
-    if (postsLoading) return null
+    if (postsLoading || page > postLastPage) return null
     setPostsLoading(true)
     setPostsError('')
     try {
@@ -699,6 +705,7 @@ export const useStore = () => {
         setPostsLoading(false)
         return null
       }
+
       loadPosts(response.posts)
       loadPostPagination(response.page, response.lastPage)
       setPostsLoading(false)

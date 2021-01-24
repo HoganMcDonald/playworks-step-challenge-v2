@@ -1,13 +1,26 @@
 import React from 'react'
-import { Grid } from '@material-ui/core'
 
 import { useStore } from '../store'
 import DailyChallenge from './DailyChallenge'
 import '../styles/challenges.css'
 import PostTile from './PostTile'
+import PostGrid from './PostGrid'
 
 const Challenges = ({ teamOnly }) => {
-  const { posts, team, currentUser, deletePosts } = useStore()
+  const [touch, setTouch] = React.useState(Date.now())
+
+  const {
+    posts,
+    team,
+    postLastPage,
+    postCurrentPage,
+    currentUser,
+    getPosts,
+  } = useStore()
+
+  const handleLoad = React.useCallback(() => {
+    setTouch(Date.now())
+  }, [])
 
   const items = React.useMemo(() => {
     return posts.filter((post) => !teamOnly || post.teamId == team.id)
@@ -16,13 +29,17 @@ const Challenges = ({ teamOnly }) => {
   return (
     <div style={{ marginBottom: '3rem' }}>
       <DailyChallenge />
-      <Grid container spacing={2} justify="center">
+      <PostGrid
+        initialLoad={false}
+        hasMore={postCurrentPage < postLastPage}
+        loadMore={() =>
+          getPosts(currentUser.currentContestId, postCurrentPage + 1)
+        }
+        touch={touch}>
         {items.map((item, i) => (
-          <Grid item key={i}>
-            <PostTile item={item} />
-          </Grid>
+          <PostTile key={i} item={item} onLoad={handleLoad} />
         ))}
-      </Grid>
+      </PostGrid>
     </div>
   )
 }

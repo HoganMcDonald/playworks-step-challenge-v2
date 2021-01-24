@@ -16,7 +16,7 @@ class PostsController < ApplicationController
 
   def show
     contest = Contest.find(params[:id])
-    posts = contest.posts.includes(:image_attachment, :image_blob, teams_user: :user).page params[:page]
+    posts = contest.posts.includes(:image_attachment, :image_blob, teams_user: :user).page(params[:page]).per(5)
 
     response = {
       posts: posts.map(&:serialized),

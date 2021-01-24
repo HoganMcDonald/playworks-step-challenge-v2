@@ -16,7 +16,7 @@ function loadImage(url) {
   })
 }
 
-const PostTile = ({ item }) => {
+const PostTile = ({ item, onLoad }) => {
   const [imageLoaded, setImageLoaded] = React.useState(false)
 
   const { currentUser, deletePosts } = useStore()
@@ -24,6 +24,7 @@ const PostTile = ({ item }) => {
   React.useEffect(() => {
     loadImage(item.image).then(() => {
       setImageLoaded(true)
+      onLoad()
     })
   }, [item])
 
